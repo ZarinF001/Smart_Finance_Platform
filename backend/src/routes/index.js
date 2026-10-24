@@ -5,6 +5,8 @@ import categoryRoutes from './category.routes.js';
 import incomeRoutes from './income.routes.js';
 import expenseRoutes from './expense.routes.js';
 import transactionRoutes from './transaction.routes.js';
+import budgetRoutes from './budget.routes.js';
+import savingsGoalRoutes from './savingsGoal.routes.js';
 
 const router = Router();
 
@@ -15,5 +17,7 @@ router.use('/categories', categoryRoutes);
 router.use('/incomes', incomeRoutes);
 router.use('/expenses', expenseRoutes);
 router.use('/transactions', transactionRoutes);
+router.use('/budgets', budgetRoutes);
+router.use('/savings-goals', savingsGoalRoutes);
 
 export default router;

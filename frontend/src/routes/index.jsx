@@ -15,6 +15,8 @@ import DashboardPage from '../pages/DashboardPage.jsx';
 import IncomePage from '../pages/IncomePage.jsx';
 import ExpensePage from '../pages/ExpensePage.jsx';
 import TransactionsPage from '../pages/TransactionsPage.jsx';
+import BudgetsPage from '../pages/BudgetsPage.jsx';
+import SavingsGoalsPage from '../pages/SavingsGoalsPage.jsx';
 import ProfilePage from '../pages/ProfilePage.jsx';
 import ChangePasswordPage from '../pages/ChangePasswordPage.jsx';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
@@ -43,6 +45,8 @@ export const AppRoutes = () => {
           <Route path="/income" element={<IncomePage />} />
           <Route path="/expenses" element={<ExpensePage />} />
           <Route path="/transactions" element={<TransactionsPage />} />
+          <Route path="/budgets" element={<BudgetsPage />} />
+          <Route path="/goals" element={<SavingsGoalsPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/change-password" element={<ChangePasswordPage />} />
         </Route>

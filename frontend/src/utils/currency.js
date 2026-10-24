@@ -69,3 +69,28 @@ export const toInputDateFormat = (date = new Date()) => {
     return new Date().toISOString().split('T')[0];
   }
 };
+
+export const MONTH_NAMES = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+/**
+ * Get human-readable month name from 1-indexed month number (1-12)
+ * @param {number} monthNumber (1 to 12)
+ * @returns {string}
+ */
+export const getMonthName = (monthNumber) => {
+  const index = Number(monthNumber) - 1;
+  return MONTH_NAMES[index] || 'Unknown';
+};

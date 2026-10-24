@@ -66,15 +66,13 @@ export const DashboardSidebar = ({ isOpen, onClose }) => {
           name: 'Budgets',
           path: '/budgets',
           icon: PieChart,
-          functional: false,
-          badge: 'Phase 3',
+          functional: true,
         },
         {
           name: 'Savings Goals',
           path: '/goals',
           icon: Target,
-          functional: false,
-          badge: 'Phase 3',
+          functional: true,
         },
         {
           name: 'Reports & Analytics',

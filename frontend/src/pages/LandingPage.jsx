@@ -153,19 +153,19 @@ export const LandingPage = () => {
             </p>
           </Card>
 
-          {/* Phase 3 card (Upcoming) */}
-          <Card className="border-slate-200 bg-white">
+          {/* Phase 3 card (Active) */}
+          <Card className="border-emerald-200/80 bg-gradient-to-b from-white to-emerald-50/20">
             <div className="flex items-center justify-between mb-2">
-              <Badge variant="neutral" size="sm">
-                Phase 3 (Next)
+              <Badge variant="success" size="sm" dot>
+                Phase 3 Active
               </Badge>
-              <TrendingUp className="w-4 h-4 text-slate-400" />
+              <TrendingUp className="w-4 h-4 text-emerald-600" />
             </div>
             <h3 className="text-sm font-bold text-slate-800">
-              Financial Core
+              Financial Core (Modules 1 & 2)
             </h3>
             <p className="text-xs text-slate-500 mt-1">
-              Income tracking, categorized expenses, monthly budgets, and goal trackers.
+              Incomes, expenses, unified ledger, category budgets, and savings goals.
             </p>
           </Card>
 

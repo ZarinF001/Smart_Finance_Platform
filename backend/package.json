@@ -9,7 +9,10 @@
     "dev": "nodemon src/server.js",
     "seed:admin": "node src/scripts/seedAdmin.js",
     "test:auth": "node src/scripts/verifyAuth.js",
-    "test:transactions": "node src/scripts/verifyTransactions.js"
+    "test:transactions": "node src/scripts/verifyTransactions.js",
+    "test:budgets": "node src/scripts/verifyModule2BudgetsSavings.js",
+    "test:master": "node src/scripts/verifyMasterModules1And2.js",
+    "test": "npm run test:auth && npm run test:transactions && npm run test:budgets && npm run test:master"
   },
   "keywords": [
     "personal-finance",

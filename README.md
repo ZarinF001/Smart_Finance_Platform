@@ -2,7 +2,7 @@
 
 A full-stack, modular web application designed for students and individuals to track personal income, expenses, budgets, and savings goals.
 
-This repository represents **Phase 1: Project Setup and Architecture**, establishing the foundational client-server structure, database connectivity, centralized error handling, and design system.
+This repository implements **Project Setup, Authentication, Module 1 (Income, Expense & Unified Transaction Ledger)**, and **Module 2 (Budgets & Savings Goals)** with a decoupled Node.js/Express backend and React/Vite/Tailwind frontend.
 
 ---
 
@@ -409,6 +409,52 @@ Module 1 provides complete RESTful endpoints for tracking personal incomes and e
 
 ---
 
+## 📊 Budget and Savings Management (Module 2 Backend)
+
+Module 2 provides complete RESTful endpoints for monthly category budgets with dynamic spending calculation from expense records, and goal-oriented savings tracking with granular contribution histories.
+
+### Monthly Budget Endpoints
+
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/budgets` | Protected | Create a monthly budget for an expense category |
+| `GET` | `/api/budgets` | Protected | List monthly budgets with dynamic spending, remaining, utilization, and status |
+| `GET` | `/api/budgets/summary` | Protected | Aggregated budget health summary for a specified month & year |
+| `GET` | `/api/budgets/:id` | Protected | Retrieve single budget with dynamic calculations |
+| `PATCH` | `/api/budgets/:id` | Protected | Update spending limit, category, month, or year |
+| `DELETE` | `/api/budgets/:id` | Protected | Delete a budget record |
+
+#### Dynamic Budget Status Rules
+- **NORMAL:** Spending is below the warning threshold (`utilization < 80%`).
+- **WARNING:** Spending reaches or exceeds threshold without exceeding limit (`utilization >= 80% && utilization <= 100%`).
+- **EXCEEDED:** Spending is strictly greater than the limit (`spent > limit`).
+- Spending is computed on-the-fly from live `Expense` records, ensuring that additions, edits, and deletions are automatically reflected without stale state.
+
+---
+
+### Savings Goals & Contributions Endpoints
+
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/savings-goals` | Protected | Create a new savings target with deadline |
+| `GET` | `/api/savings-goals` | Protected | List goals with progress percentage, saved amount, time remaining, and monthly target |
+| `GET` | `/api/savings-goals/:id` | Protected | Get goal details with recent contributions |
+| `PATCH` | `/api/savings-goals/:id` | Protected | Update target amount, name, deadline, or description |
+| `DELETE` | `/api/savings-goals/:id` | Protected | Delete goal and cascade-delete all its contributions |
+| `POST` | `/api/savings-goals/:id/contributions` | Protected | Record contribution towards goal (verifies ownership and positive amount) |
+| `GET` | `/api/savings-goals/:id/contributions` | Protected | Paginated contribution history for a particular goal |
+
+#### Savings Calculations & Required Monthly Savings
+- **Total Saved:** Computed from `SavingsContribution` records as the single source of truth.
+- **Remaining Amount:** `Math.max(0, targetAmount - totalSaved)`.
+- **Status:** `COMPLETED` when `totalSaved >= targetAmount`, `EXPIRED` if deadline has passed before target is met, otherwise `IN_PROGRESS`.
+- **Required Monthly Savings:**
+  - If completed: `0 BDT`.
+  - If expired: Full `remainingAmount` due immediately.
+  - Otherwise: `Math.round((remainingAmount / Math.max(1, Math.ceil(daysRemaining / 30.4375))) * 100) / 100`.
+
+---
+
 ## 📌 Phase Roadmap
 
 - [x] **Phase 1: Project Setup and Architecture**
@@ -449,10 +495,21 @@ Module 1 provides complete RESTful endpoints for tracking personal incomes and e
   - Unified Transaction Ledger (`/transactions`) combining incomes and expenses with type tabs (`ALL`, `INCOME`, `EXPENSE`), category filters, sorting by date and amount, and live net balance summary metrics.
   - Accessible modal dialogs (`Modal`, `ConfirmDialog`, `Pagination`, `EmptyState`) with keyboard focus states and ESC dismiss.
   - Comprehensive end-to-end integration test suite (`node src/scripts/verifyModule1Integration.js`) passing 100% against live MongoDB Atlas.
-- [ ] **Phase 6: Budgets & Savings Goals**
-  - Monthly budget limits and threshold alerts.
-  - Savings goal tracking and milestone visualization.
-- [ ] **Phase 7: Analytics, Visualizations & Reporting**
+- [x] **Phase 6: Module 2 Backend - Budgets & Savings Goals**
+  - Mongoose models for `Budget`, `SavingsGoal`, and `SavingsContribution`.
+  - Compound unique index (`user`, `category`, `month`, `year`) preventing duplicate budgets.
+  - Dynamic spending calculations and status triggers (`NORMAL`, `WARNING` at 80%, `EXCEEDED`).
+  - Monthly budget summary aggregation (`GET /api/budgets/summary`).
+  - Savings goals with deadline tracking, contribution histories, and required monthly savings formulas.
+  - User ownership isolation, Zod input validation, and cascade deletion.
+  - Comprehensive 62-point automated test suite (`npm run test:budgets`) passing 100%.
+- [x] **Phase 7: Module 2 Frontend - Budgets & Savings Goals UI**
+  - Reusable services for Budgets and Savings Goals (`budgetService`, `savingsGoalService`).
+  - Monthly Budgets Page (`/budgets`) with Month/Year picker, health summary cards, category utilization progress bars, status badges (`On Track`, `Near Limit`, `Exceeded`), Add/Edit modal, and delete confirmation.
+  - Savings Goals Page (`/goals`) with target progress bars, status tabs, deadline countdowns, required monthly savings calculations, deposit modal (`AddContributionModal`), contribution history modal (`ContributionHistoryModal`), and CRUD management.
+  - Real-time dynamic recalculations: spending, remaining balance, and utilization reflect live backend expense records.
+  - End-to-end integration test suite (`node src/scripts/verifyModule2FrontendIntegration.js`) passing 100%.
+- [ ] **Phase 8: Analytics, Visualizations & Reporting**
   - Interactive cash flow graphs, spending distribution charts, statement exports.
 
 

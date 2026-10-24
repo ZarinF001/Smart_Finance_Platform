@@ -44,6 +44,16 @@ export const DashboardNavbar = ({ onToggleSidebar }) => {
     switch (location.pathname) {
       case '/dashboard':
         return 'Financial Overview';
+      case '/income':
+        return 'Income Management';
+      case '/expenses':
+        return 'Expense Management';
+      case '/transactions':
+        return 'Transaction Ledger';
+      case '/budgets':
+        return 'Monthly Budgets';
+      case '/goals':
+        return 'Savings Goals';
       case '/profile':
         return 'User Profile';
       case '/change-password':
@@ -87,7 +97,7 @@ export const DashboardNavbar = ({ onToggleSidebar }) => {
                 {getPageTitle()}
               </h1>
               <p className="text-[11px] text-slate-400 hidden sm:block">
-                Personal Finance Platform • Phase 2 Authenticated Session
+                Personal Finance Platform
               </p>
             </div>
           </div>
@@ -135,9 +145,8 @@ export const DashboardNavbar = ({ onToggleSidebar }) => {
                   </p>
                 </div>
                 <ChevronDown
-                  className={`w-3.5 h-3.5 text-slate-400 group-hover:text-slate-600 transition-transform duration-200 ${
-                    dropdownOpen ? 'rotate-180' : ''
-                  }`}
+                  className={`w-3.5 h-3.5 text-slate-400 group-hover:text-slate-600 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''
+                    }`}
                 />
               </button>
 

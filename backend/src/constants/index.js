@@ -63,3 +63,17 @@ export const PAYMENT_METHODS = [
   'mobile_payment',
   'other',
 ];
+
+export const BUDGET_STATUS = {
+  NORMAL: 'NORMAL',
+  WARNING: 'WARNING',
+  EXCEEDED: 'EXCEEDED',
+};
+
+export const BUDGET_WARNING_THRESHOLD = 0.8; // 80%
+
+export const SAVINGS_GOAL_STATUS = {
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  EXPIRED: 'EXPIRED',
+};

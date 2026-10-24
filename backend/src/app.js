@@ -59,6 +59,8 @@ app.get('/', (req, res) => {
       incomes: 'POST, GET /api/incomes, GET, PUT, DELETE /api/incomes/:id',
       expenses: 'POST, GET /api/expenses, GET, PUT, DELETE /api/expenses/:id',
       transactions: 'GET /api/transactions',
+      budgets: 'POST, GET /api/budgets, GET /api/budgets/summary, GET, PATCH, DELETE /api/budgets/:id',
+      savingsGoals: 'POST, GET /api/savings-goals, GET, PATCH, DELETE /api/savings-goals/:id, POST, GET /api/savings-goals/:id/contributions',
     },
   });
 });
