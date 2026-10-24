@@ -12,6 +12,9 @@ import HealthCheckPage from '../pages/HealthCheckPage.jsx';
 import LoginPage from '../pages/auth/LoginPage.jsx';
 import RegisterPage from '../pages/auth/RegisterPage.jsx';
 import DashboardPage from '../pages/DashboardPage.jsx';
+import IncomePage from '../pages/IncomePage.jsx';
+import ExpensePage from '../pages/ExpensePage.jsx';
+import TransactionsPage from '../pages/TransactionsPage.jsx';
 import ProfilePage from '../pages/ProfilePage.jsx';
 import ChangePasswordPage from '../pages/ChangePasswordPage.jsx';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
@@ -37,6 +40,9 @@ export const AppRoutes = () => {
       <Route element={<ProtectedRoute />}>
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/income" element={<IncomePage />} />
+          <Route path="/expenses" element={<ExpensePage />} />
+          <Route path="/transactions" element={<TransactionsPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/change-password" element={<ChangePasswordPage />} />
         </Route>

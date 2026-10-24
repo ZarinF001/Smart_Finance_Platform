@@ -42,28 +42,25 @@ export const DashboardSidebar = ({ isOpen, onClose }) => {
       ],
     },
     {
-      label: 'Financial Modules (Roadmap)',
+      label: 'Financial Management',
       items: [
         {
           name: 'Income',
           path: '/income',
           icon: ArrowDownLeft,
-          functional: false,
-          badge: 'Phase 3',
+          functional: true,
         },
         {
           name: 'Expenses',
           path: '/expenses',
           icon: ArrowUpRight,
-          functional: false,
-          badge: 'Phase 3',
+          functional: true,
         },
         {
           name: 'Transactions',
           path: '/transactions',
           icon: ArrowUpDown,
-          functional: false,
-          badge: 'Phase 3',
+          functional: true,
         },
         {
           name: 'Budgets',

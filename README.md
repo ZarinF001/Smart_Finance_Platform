@@ -442,10 +442,13 @@ Module 1 provides complete RESTful endpoints for tracking personal incomes and e
   - Combined `GET /api/transactions` with keyword search, type/category/date filtering, sorting, and pagination.
   - Summary aggregation (`totalIncome`, `totalExpense`, `netBalance`).
   - Comprehensive automated test suite (`npm run test:transactions`).
-- [ ] **Phase 5: Financial Core Frontend (Transactions, Incomes & Expenses UI)**
-  - Interactive income & expense management pages.
-  - Modal/drawer transaction forms with category pickers.
-  - Filterable transactions table with pagination controls.
+- [x] **Phase 5: Financial Core Frontend (Module 1 - Incomes, Expenses & Transaction History)**
+  - Reusable services for Categories, Incomes, Expenses, and Transactions (`categoryService`, `incomeService`, `expenseService`, `transactionService`).
+  - Interactive Income Management Page (`/income`) with BDT currency formatting (`৳`), category filter, date range, pagination, Add/Edit modal, and delete confirmation dialogs.
+  - Interactive Expense Management Page (`/expenses`) with payment method indicators (Cash, Card, Bank, bKash/Nagad), category filter, search, date range, pagination, Add/Edit modal, and delete confirmation dialogs.
+  - Unified Transaction Ledger (`/transactions`) combining incomes and expenses with type tabs (`ALL`, `INCOME`, `EXPENSE`), category filters, sorting by date and amount, and live net balance summary metrics.
+  - Accessible modal dialogs (`Modal`, `ConfirmDialog`, `Pagination`, `EmptyState`) with keyboard focus states and ESC dismiss.
+  - Comprehensive end-to-end integration test suite (`node src/scripts/verifyModule1Integration.js`) passing 100% against live MongoDB Atlas.
 - [ ] **Phase 6: Budgets & Savings Goals**
   - Monthly budget limits and threshold alerts.
   - Savings goal tracking and milestone visualization.
