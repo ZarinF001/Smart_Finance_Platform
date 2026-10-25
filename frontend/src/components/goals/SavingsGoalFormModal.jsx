@@ -154,8 +154,9 @@ export const SavingsGoalFormModal = ({
             onChange={handleChange}
             placeholder="e.g. Emergency Fund, Laptop Upgrade, Vacation"
             maxLength={100}
-            className={`w-full px-3 py-2.5 text-sm bg-white border rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-colors ${errors.name ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
-              }`}
+            className={`w-full px-3 py-2 text-xs bg-white border rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
+              errors.name ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
+            }`}
           />
           {errors.name && (
             <p className="mt-1 text-xs text-rose-500">{errors.name}</p>
@@ -163,7 +164,7 @@ export const SavingsGoalFormModal = ({
         </div>
 
         {/* Target Amount & Deadline Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {/* Target Amount */}
           <div>
             <label
@@ -185,8 +186,9 @@ export const SavingsGoalFormModal = ({
                 value={formData.targetAmount}
                 onChange={handleChange}
                 placeholder="e.g. 50000"
-                className={`w-full pl-8 pr-3 py-2.5 text-sm bg-white border rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-colors ${errors.targetAmount ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
-                  }`}
+                className={`w-full pl-8 pr-3 py-2 text-xs bg-white border rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
+                  errors.targetAmount ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
+                }`}
               />
             </div>
             {errors.targetAmount && (
@@ -208,8 +210,9 @@ export const SavingsGoalFormModal = ({
               name="deadline"
               value={formData.deadline}
               onChange={handleChange}
-              className={`w-full px-3 py-2.5 text-sm bg-white border rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-colors ${errors.deadline ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
-                }`}
+              className={`w-full px-2.5 py-2 text-xs bg-white border rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
+                errors.deadline ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
+              }`}
             />
             {errors.deadline && (
               <p className="mt-1 text-xs text-rose-500">{errors.deadline}</p>
@@ -233,7 +236,7 @@ export const SavingsGoalFormModal = ({
             onChange={handleChange}
             placeholder="e.g. Setting aside 5,000 BDT monthly to replace my work computer."
             maxLength={500}
-            className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-colors resize-none"
+            className="w-full px-3 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors resize-none"
           />
           <div className="flex justify-between items-center text-[11px] text-slate-400 mt-0.5">
             <span>Keep your goal descriptive and focused</span>

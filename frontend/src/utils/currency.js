@@ -21,14 +21,14 @@ export const formatBDT = (amount, options = {}) => {
   });
 
   if (isNegative) {
-    return `-৳ ${formattedNumber}`;
+    return `-৳${formattedNumber}`;
   }
 
   if (showSign && num > 0) {
-    return `+৳ ${formattedNumber}`;
+    return `+৳${formattedNumber}`;
   }
 
-  return `৳ ${formattedNumber}`;
+  return `৳${formattedNumber}`;
 };
 
 /**

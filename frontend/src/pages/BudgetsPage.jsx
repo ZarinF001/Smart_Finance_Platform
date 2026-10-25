@@ -166,11 +166,11 @@ export const BudgetsPage = () => {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-indigo-50 text-indigo-600 border border-indigo-200">
-              <PieChart className="w-5 h-5" />
+          <div className="flex items-center gap-2.5">
+            <span className="p-1.5 rounded-md bg-brand-50 text-brand-600 border border-brand-200/80">
+              <PieChart className="w-4 h-4" />
             </span>
-            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
               Monthly Budgets
             </h1>
           </div>
@@ -185,7 +185,7 @@ export const BudgetsPage = () => {
             variant="primary"
             onClick={handleOpenAdd}
             iconLeft={Plus}
-            className="shadow-sm shadow-brand-600/20 text-xs sm:text-sm"
+            className="self-start sm:self-auto"
           >
             Set Budget
           </Button>
@@ -193,7 +193,7 @@ export const BudgetsPage = () => {
       </div>
 
       {/* Month & Year Navigation Bar */}
-      <Card bodyClassName="p-3.5 sm:p-4">
+      <Card bodyClassName="p-3 sm:p-3.5">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <Button
@@ -201,13 +201,13 @@ export const BudgetsPage = () => {
               size="sm"
               onClick={handlePrevMonth}
               aria-label="Previous month"
-              className="h-8 px-2.5"
+              className="h-8 w-8 p-0 flex items-center justify-center"
             >
               <ChevronLeft className="w-4 h-4" />
             </Button>
 
-            <div className="flex items-center gap-1.5 text-sm font-bold text-slate-900 px-3 py-1 bg-slate-100 rounded-lg">
-              <Calendar className="w-4 h-4 text-brand-600" />
+            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 px-3 py-1.5 bg-slate-100 rounded-md border border-slate-200/60">
+              <Calendar className="w-3.5 h-3.5 text-brand-600" />
               <span>
                 {getMonthName(selectedMonth)} {selectedYear}
               </span>
@@ -218,7 +218,7 @@ export const BudgetsPage = () => {
               size="sm"
               onClick={handleNextMonth}
               aria-label="Next month"
-              className="h-8 px-2.5"
+              className="h-8 w-8 p-0 flex items-center justify-center"
             >
               <ChevronRight className="w-4 h-4" />
             </Button>
@@ -228,7 +228,7 @@ export const BudgetsPage = () => {
                 variant="ghost"
                 size="sm"
                 onClick={handleCurrentMonth}
-                className="text-xs text-brand-600 hover:text-brand-700 h-8"
+                className="text-xs text-brand-600 hover:text-brand-700 h-8 px-2"
               >
                 Current Month
               </Button>
@@ -237,16 +237,16 @@ export const BudgetsPage = () => {
 
           <div className="flex items-center gap-3 text-xs text-slate-500">
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-              On Track: <strong className="text-slate-700">{summary.normalCount}</strong>
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              On Track: <strong className="text-slate-800 tabular-nums">{summary.normalCount}</strong>
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-              Near Limit: <strong className="text-slate-700">{summary.warningCount}</strong>
+              <span className="w-2 h-2 rounded-full bg-amber-500" />
+              Near Limit: <strong className="text-slate-800 tabular-nums">{summary.warningCount}</strong>
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
-              Exceeded: <strong className="text-slate-700">{summary.exceededCount}</strong>
+              <span className="w-2 h-2 rounded-full bg-rose-500" />
+              Exceeded: <strong className="text-slate-800 tabular-nums">{summary.exceededCount}</strong>
             </span>
           </div>
         </div>
@@ -255,64 +255,64 @@ export const BudgetsPage = () => {
       {/* Monthly Summary Cards Banner */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Total Budget Limit */}
-        <Card className="bg-white border-slate-200/80">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+        <Card className="bg-white border-slate-200/90 shadow-subtle">
+          <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
             Total Budget Limit
           </p>
-          <h3 className="text-xl font-extrabold text-slate-900 mt-1">
+          <h3 className="text-2xl font-bold text-slate-900 tabular-nums mt-1 tracking-tight">
             {formatBDT(summary.totalBudgetLimit)}
           </h3>
           <p className="text-[11px] text-slate-400 mt-0.5">
-            Across {summary.totalBudgets} budgeted categories
+            Across {summary.totalBudgets} category budget{summary.totalBudgets === 1 ? '' : 's'}
           </p>
         </Card>
 
         {/* Total Actual Spent */}
-        <Card className="bg-white border-slate-200/80">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+        <Card className="bg-white border-slate-200/90 shadow-subtle">
+          <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
             Actual Spent
           </p>
-          <h3 className="text-xl font-extrabold text-rose-600 mt-1">
-            {formatBDT(summary.totalSpent)}
+          <h3 className="text-2xl font-bold text-rose-600 tabular-nums mt-1 tracking-tight">
+            -{formatBDT(summary.totalSpent)}
           </h3>
           <p className="text-[11px] text-slate-400 mt-0.5">
-            Calculated from live expense records
+            From current month expenditures
           </p>
         </Card>
 
         {/* Total Remaining */}
-        <Card className="bg-white border-slate-200/80">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+        <Card className="bg-white border-slate-200/90 shadow-subtle">
+          <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
             Remaining Budget
           </p>
           <h3
-            className={`text-xl font-extrabold mt-1 ${
-              summary.totalRemaining >= 0 ? 'text-emerald-600' : 'text-rose-600'
+            className={`text-2xl font-bold tabular-nums mt-1 tracking-tight ${
+              summary.totalRemaining >= 0 ? 'text-slate-900' : 'text-rose-600'
             }`}
           >
             {formatBDT(summary.totalRemaining, { showSign: true })}
           </h3>
           <p className="text-[11px] text-slate-400 mt-0.5">
-            {summary.totalRemaining >= 0 ? 'Surplus available' : 'Overall deficit'}
+            {summary.totalRemaining >= 0 ? 'Available surplus' : 'Overall deficit'}
           </p>
         </Card>
 
         {/* Overall Utilization */}
-        <Card className="bg-white border-slate-200/80">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+        <Card className="bg-white border-slate-200/90 shadow-subtle">
+          <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
             Overall Utilization
           </p>
           <div className="flex items-center justify-between mt-1">
-            <h3 className="text-xl font-extrabold text-slate-900">
+            <h3 className="text-2xl font-bold text-slate-900 tabular-nums tracking-tight">
               {summary.overallUtilization}%
             </h3>
             <span
-              className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border ${
+              className={`text-[10px] font-medium px-2 py-0.5 rounded-md border ${
                 summary.overallUtilization > 100
-                  ? 'bg-rose-50 text-rose-700 border-rose-200'
+                  ? 'bg-rose-50 text-rose-700 border-rose-200/80'
                   : summary.overallUtilization >= 80
-                  ? 'bg-amber-50 text-amber-700 border-amber-200'
-                  : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                  ? 'bg-amber-50 text-amber-700 border-amber-200/80'
+                  : 'bg-emerald-50 text-emerald-700 border-emerald-200/80'
               }`}
             >
               {summary.overallUtilization > 100
@@ -323,7 +323,7 @@ export const BudgetsPage = () => {
             </span>
           </div>
           {/* Global progress mini-bar */}
-          <div className="w-full bg-slate-100 rounded-full h-1.5 mt-2 overflow-hidden">
+          <div className="w-full bg-slate-100 rounded-full h-1.5 mt-2.5 overflow-hidden">
             <div
               className={`h-full rounded-full transition-all duration-300 ${
                 summary.overallUtilization > 100
@@ -340,7 +340,7 @@ export const BudgetsPage = () => {
 
       {/* Error state */}
       {error && (
-        <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center justify-between">
+        <div className="p-3.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center justify-between">
           <div className="flex items-center gap-2">
             <AlertCircle className="w-4 h-4 flex-shrink-0" />
             <span>{error}</span>
@@ -349,7 +349,7 @@ export const BudgetsPage = () => {
             variant="ghost"
             size="sm"
             onClick={fetchBudgetData}
-            className="text-rose-700 hover:bg-rose-100"
+            className="text-rose-700 hover:bg-rose-100 h-7"
           >
             Retry
           </Button>
@@ -358,21 +358,21 @@ export const BudgetsPage = () => {
 
       {/* Budget Cards Grid */}
       {isLoading ? (
-        <div className="p-16 flex flex-col items-center justify-center text-slate-400 bg-white rounded-2xl border border-slate-200">
-          <Loader2 className="w-8 h-8 animate-spin text-brand-600 mb-3" />
+        <div className="p-16 flex flex-col items-center justify-center text-slate-400 bg-white rounded-xl border border-slate-200">
+          <Loader2 className="w-7 h-7 animate-spin text-brand-600 mb-2.5" />
           <p className="text-xs">Loading budgets for {getMonthName(selectedMonth)} {selectedYear}...</p>
         </div>
       ) : budgets.length === 0 ? (
         <EmptyState
           icon={PieChart}
           title={`No budgets set for ${getMonthName(selectedMonth)} ${selectedYear}`}
-          description="Create spending limits for your regular expenses (e.g. Food, Transportation, Housing) to keep your finances under control."
+          description="Create spending limits for regular expense categories (e.g. Groceries, Transport, Rent) to monitor cash burn."
           actionLabel="Set First Budget"
           actionIcon={Plus}
           onAction={handleOpenAdd}
         />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {budgets.map((b) => {
             const statusConfig = getStatusBadge(b.status, b.utilization);
             const StatusIcon = statusConfig.icon;
@@ -381,38 +381,38 @@ export const BudgetsPage = () => {
             return (
               <Card
                 key={b._id}
-                className="hover:border-slate-300 transition-all shadow-subtle hover:shadow-card-hover"
-                bodyClassName="p-5 space-y-4"
+                className="bg-white border-slate-200/90 shadow-subtle hover:border-slate-300 transition-all"
+                bodyClassName="p-4 space-y-3.5"
               >
                 {/* Header: Category & Status */}
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <h3 className="text-base font-bold text-slate-900 tracking-tight">
+                    <h3 className="text-sm font-bold text-slate-900 tracking-tight">
                       {b.category}
                     </h3>
                     <p className="text-[11px] text-slate-400 mt-0.5">
-                      {getMonthName(b.month)} {b.year} Budget
+                      {getMonthName(b.month)} {b.year}
                     </p>
                   </div>
 
                   <span
-                    className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border ${statusConfig.className}`}
+                    className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium border ${statusConfig.className}`}
                   >
-                    <StatusIcon className="w-3.5 h-3.5" />
+                    <StatusIcon className="w-3 h-3" />
                     {statusConfig.label}
                   </span>
                 </div>
 
                 {/* Spending Progress Bar */}
-                <div className="space-y-1.5">
+                <div className="space-y-1">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-slate-500 font-medium">Spent so far:</span>
-                    <span className="font-bold text-slate-800">
+                    <span className="font-semibold text-slate-800 tabular-nums">
                       {b.utilization}% ({formatBDT(b.spent)})
                     </span>
                   </div>
 
-                  <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                  <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all duration-300 ${statusConfig.barClass}`}
                       style={{ width: `${percentWidth}%` }}
@@ -421,20 +421,20 @@ export const BudgetsPage = () => {
                 </div>
 
                 {/* Limit & Remaining Details Grid */}
-                <div className="p-3 bg-slate-50/80 rounded-xl grid grid-cols-2 gap-2 text-xs border border-slate-100">
+                <div className="p-2.5 bg-slate-50 rounded-lg grid grid-cols-2 gap-2 text-xs border border-slate-100">
                   <div>
-                    <p className="text-[11px] text-slate-400 font-medium">Monthly Limit</p>
-                    <p className="font-bold text-slate-800 mt-0.5">
+                    <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Limit</p>
+                    <p className="font-semibold text-slate-800 mt-0.5 tabular-nums">
                       {formatBDT(b.limit)}
                     </p>
                   </div>
 
                   <div className="text-right">
-                    <p className="text-[11px] text-slate-400 font-medium">
+                    <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">
                       {b.remaining >= 0 ? 'Remaining' : 'Overspent'}
                     </p>
                     <p
-                      className={`font-bold mt-0.5 ${
+                      className={`font-semibold mt-0.5 tabular-nums ${
                         b.remaining >= 0 ? 'text-emerald-600' : 'text-rose-600'
                       }`}
                     >
@@ -446,7 +446,7 @@ export const BudgetsPage = () => {
                 </div>
 
                 {/* Card Actions Footer */}
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-end gap-2">
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-end gap-1.5">
                   <Button
                     variant="outline"
                     size="sm"

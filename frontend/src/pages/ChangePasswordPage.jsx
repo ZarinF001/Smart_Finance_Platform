@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   KeyRound,
   Lock,
@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   AlertCircle,
   ArrowRight,
+  ArrowLeft,
   ShieldCheck,
 } from 'lucide-react';
 import authService from '../services/authService.js';
@@ -100,15 +101,24 @@ export const ChangePasswordPage = () => {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       {/* Page Header */}
-      <div>
-        <div className="flex items-center gap-2">
-          <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-            Security & Password
-          </h1>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b border-slate-200/80">
+        <div>
+          <div className="flex items-center gap-2">
+            <Link
+              to="/profile"
+              className="text-slate-400 hover:text-slate-700 transition-colors p-1 -ml-1 rounded-md hover:bg-slate-100"
+              title="Back to Profile"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </Link>
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+              Security & Password
+            </h1>
+          </div>
+          <p className="text-xs text-slate-500 mt-0.5">
+            Update your login password to maintain high account security.
+          </p>
         </div>
-        <p className="text-xs text-slate-500 mt-1">
-          Update your login password to maintain high account security.
-        </p>
       </div>
 
       {/* Success Notification Banner */}

@@ -27,7 +27,7 @@ export const DashboardSidebar = ({ isOpen, onClose }) => {
 
   const navItems = [
     {
-      label: 'Main',
+      label: 'Overview',
       items: [
         {
           name: 'Dashboard',
@@ -70,12 +70,12 @@ export const DashboardSidebar = ({ isOpen, onClose }) => {
       label: 'Account',
       items: [
         {
-          name: 'My Profile',
+          name: 'Profile',
           path: '/profile',
           icon: User,
         },
         {
-          name: 'Change Password',
+          name: 'Security & Password',
           path: '/change-password',
           icon: KeyRound,
         },
@@ -98,36 +98,36 @@ export const DashboardSidebar = ({ isOpen, onClose }) => {
       {/* Mobile backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 lg:hidden transition-opacity"
+          className="fixed inset-0 bg-slate-900/30 backdrop-blur-xs z-40 lg:hidden transition-opacity"
           onClick={onClose}
           aria-hidden="true"
         />
       )}
 
-      {/* Sidebar container */}
+      {/* Compact, refined sidebar container */}
       <aside
         className={cn(
-          'fixed top-0 bottom-0 left-0 z-50 w-64 bg-slate-900 text-slate-300 flex flex-col justify-between transition-transform duration-300 ease-in-out border-r border-slate-800 shadow-xl lg:translate-x-0',
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+          'fixed top-0 bottom-0 left-0 z-50 w-60 bg-white text-slate-700 flex flex-col justify-between transition-transform duration-200 ease-in-out border-r border-slate-200/90 lg:translate-x-0',
+          isOpen ? 'translate-x-0 shadow-lg' : '-translate-x-full'
         )}
       >
-        {/* Top brand header */}
         <div>
-          <div className="h-16 px-5 flex items-center justify-between border-b border-slate-800/80 bg-slate-950/40">
+          {/* Brand header */}
+          <div className="h-14 px-4 flex items-center justify-between border-b border-slate-100">
             <Link to="/dashboard" className="flex items-center gap-2.5 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-brand-500/25 group-hover:scale-105 transition-transform">
-                <WalletCards className="w-5 h-5" />
+              <div className="w-7 h-7 rounded-md bg-brand-600 flex items-center justify-center text-white shadow-subtle group-hover:bg-brand-700 transition-colors">
+                <WalletCards className="w-4 h-4" />
               </div>
-              <div>
-                <span className="text-base font-bold text-white tracking-tight flex items-center gap-1.5">
+              <div className="min-w-0">
+                <span className="text-sm font-bold text-slate-900 tracking-tight flex items-center gap-1.5 leading-none">
                   Split Easy
                   {user?.role === 'ADMIN' && (
-                    <span className="text-[9px] uppercase font-semibold px-1.5 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">
+                    <span className="text-[9px] uppercase font-semibold px-1 py-0.2 rounded bg-slate-100 text-slate-600 border border-slate-200 font-mono">
                       Admin
                     </span>
                   )}
                 </span>
-                <p className="text-[10px] text-slate-400 font-medium leading-none">
+                <p className="text-[10px] text-slate-400 mt-0.5 leading-none">
                   Personal Finance
                 </p>
               </div>
@@ -135,21 +135,21 @@ export const DashboardSidebar = ({ isOpen, onClose }) => {
 
             <button
               onClick={onClose}
-              className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none"
+              className="lg:hidden p-1 rounded-md text-slate-400 hover:text-slate-700 hover:bg-slate-100 focus:outline-none"
               aria-label="Close sidebar"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
 
           {/* Navigation sections */}
-          <div className="p-3.5 space-y-5 overflow-y-auto max-h-[calc(100vh-8.5rem)]">
+          <div className="p-3 space-y-4 overflow-y-auto max-h-[calc(100vh-7.5rem)]">
             {navItems.map((section) => (
               <div key={section.label}>
-                <p className="px-3 mb-1.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
+                <p className="px-2.5 mb-1 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
                   {section.label}
                 </p>
-                <div className="space-y-0.5">
+                <nav className="space-y-0.5">
                   {section.items.map((item) => {
                     const Icon = item.icon;
 
@@ -162,57 +162,55 @@ export const DashboardSidebar = ({ isOpen, onClose }) => {
                         }}
                         className={({ isActive }) =>
                           cn(
-                            'flex items-center justify-between px-3 py-2 text-xs font-medium rounded-lg transition-colors',
+                            'flex items-center gap-2.5 px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors',
                             isActive
-                              ? 'bg-brand-600 text-white font-semibold shadow-sm shadow-brand-600/30'
-                              : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                              ? 'bg-blue-50 text-blue-700 font-semibold border-l-2 border-brand-600 pl-2'
+                              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                           )
                         }
                       >
-                        <div className="flex items-center gap-2.5">
-                          <Icon className="w-4 h-4" />
-                          <span>{item.name}</span>
-                        </div>
+                        <Icon className="w-4 h-4 flex-shrink-0 opacity-80" />
+                        <span className="truncate">{item.name}</span>
                       </NavLink>
                     );
                   })}
-                </div>
+                </nav>
               </div>
             ))}
           </div>
         </div>
 
-        {/* User Mini Profile & Logout in Footer */}
-        <div className="p-3 border-t border-slate-800/80 bg-slate-950/60">
-          <div className="flex items-center justify-between gap-2 p-2 rounded-xl bg-slate-800/50 border border-slate-700/50">
+        {/* User Mini Profile in Sidebar Footer */}
+        <div className="p-3 border-t border-slate-100 bg-slate-50/50">
+          <div className="flex items-center justify-between gap-2 p-1.5 rounded-md hover:bg-white transition-colors">
             <Link
               to="/profile"
               onClick={() => {
                 if (window.innerWidth < 1024) onClose();
               }}
-              className="flex items-center gap-2.5 min-w-0 group"
-              title="View my profile"
+              className="flex items-center gap-2 min-w-0 group"
+              title="View profile"
             >
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0 group-hover:scale-105 transition-transform">
+              <div className="w-7 h-7 rounded-md bg-slate-200 text-slate-700 flex items-center justify-center text-xs font-semibold flex-shrink-0">
                 {getInitials(user?.name)}
               </div>
               <div className="min-w-0">
-                <p className="text-xs font-semibold text-slate-100 truncate group-hover:text-brand-300 transition-colors">
+                <p className="text-xs font-semibold text-slate-900 truncate leading-tight group-hover:text-brand-600 transition-colors">
                   {user?.name || 'User'}
                 </p>
-                <p className="text-[10px] text-slate-400 truncate">
-                  {user?.email || 'authenticated'}
+                <p className="text-[10px] text-slate-400 truncate leading-tight mt-0.5">
+                  {user?.email || 'Account'}
                 </p>
               </div>
             </Link>
 
             <button
               onClick={handleLogout}
-              className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors flex-shrink-0"
+              className="p-1 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded transition-colors flex-shrink-0"
               title="Sign out of Split Easy"
               aria-label="Sign out"
             >
-              <LogOut className="w-4 h-4" />
+              <LogOut className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>

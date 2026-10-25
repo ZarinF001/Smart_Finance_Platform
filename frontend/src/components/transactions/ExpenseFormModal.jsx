@@ -208,7 +208,7 @@ export const ExpenseFormModal = ({
               value={formData.amount}
               onChange={handleChange}
               placeholder="e.g. 1250"
-              className={`w-full pl-8 pr-4 py-2.5 text-sm bg-white border rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-colors ${
+              className={`w-full pl-8 pr-3 py-2 text-xs bg-white border rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
                 errors.amount ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
               }`}
             />
@@ -219,7 +219,7 @@ export const ExpenseFormModal = ({
         </div>
 
         {/* Category & Payment Method Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {/* Category */}
           <div>
             <label
@@ -234,7 +234,7 @@ export const ExpenseFormModal = ({
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full px-3 py-2.5 text-sm bg-white border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-colors"
+                className="w-full px-2.5 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors"
               >
                 {categories.map((cat) => (
                   <option key={cat} value={cat}>
@@ -262,7 +262,7 @@ export const ExpenseFormModal = ({
                 name="paymentMethod"
                 value={formData.paymentMethod}
                 onChange={handleChange}
-                className="w-full px-3 py-2.5 text-sm bg-white border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-colors"
+                className="w-full px-2.5 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors"
               >
                 {PAYMENT_METHOD_OPTIONS.map((opt) => (
                   <option key={opt.value} value={opt.value}>
@@ -292,7 +292,7 @@ export const ExpenseFormModal = ({
               name="date"
               value={formData.date}
               onChange={handleChange}
-              className="w-full px-3 py-2.5 text-sm bg-white border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-colors"
+              className="w-full px-2.5 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors"
             />
           </div>
           {errors.date && (
@@ -316,7 +316,7 @@ export const ExpenseFormModal = ({
             onChange={handleChange}
             placeholder="e.g. Grocery shopping at Shwapno Superstore"
             maxLength={250}
-            className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-colors resize-none"
+            className="w-full px-3 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors resize-none"
           />
           <div className="flex justify-between items-center text-[11px] text-slate-400 mt-0.5">
             <span>Add merchant details or items purchased</span>
@@ -342,7 +342,7 @@ export const ExpenseFormModal = ({
             type="submit"
             variant="primary"
             loading={isSubmitting}
-            className="bg-rose-600 hover:bg-rose-700 focus:ring-rose-500 text-white"
+            className="bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 text-white shadow-sm"
             iconLeft={ArrowUpRight}
           >
             {isEditing ? 'Save Changes' : 'Record Expense'}

@@ -1,19 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Activity,
-  RefreshCw,
-  Database,
-  Server,
-  Clock,
-  Cpu,
-  CheckCircle2,
-  AlertCircle,
-  XCircle,
-  Zap,
-  Code,
-  BellRing,
-  HelpCircle,
-} from 'lucide-react';
+import { Activity, RefreshCw, Database, Server, Clock, Cpu, CheckCircle2, AlertCircle, XCircle, Zap, Code, BellRing, HelpCircle, } from 'lucide-react';
 import Card from '../components/common/Card.jsx';
 import Button from '../components/common/Button.jsx';
 import Badge from '../components/common/Badge.jsx';
@@ -79,13 +65,12 @@ export const HealthCheckPage = () => {
               </h4>
             </div>
             <div
-              className={`p-2 rounded-xl ${
-                loading
+              className={`p-2 rounded-xl ${loading
                   ? 'bg-slate-100 text-slate-500'
                   : isConnectedToApi
-                  ? 'bg-emerald-50 text-emerald-600'
-                  : 'bg-rose-50 text-rose-600'
-              }`}
+                    ? 'bg-emerald-50 text-emerald-600'
+                    : 'bg-rose-50 text-rose-600'
+                }`}
             >
               <Server className="w-5 h-5" />
             </div>
@@ -107,18 +92,17 @@ export const HealthCheckPage = () => {
                 {loading
                   ? 'Checking...'
                   : isDbConnected
-                  ? 'Connected'
-                  : 'Disconnected'}
+                    ? 'Connected'
+                    : 'Disconnected'}
               </h4>
             </div>
             <div
-              className={`p-2 rounded-xl ${
-                loading
+              className={`p-2 rounded-xl ${loading
                   ? 'bg-slate-100 text-slate-500'
                   : isDbConnected
-                  ? 'bg-emerald-50 text-emerald-600'
-                  : 'bg-amber-50 text-amber-600'
-              }`}
+                    ? 'bg-emerald-50 text-emerald-600'
+                    : 'bg-amber-50 text-amber-600'
+                }`}
             >
               <Database className="w-5 h-5" />
             </div>

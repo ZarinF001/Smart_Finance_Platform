@@ -138,16 +138,16 @@ export const SavingsGoalsPage = () => {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-200">
-              <Target className="w-5 h-5" />
+          <div className="flex items-center gap-2.5">
+            <span className="p-1.5 rounded-md bg-emerald-50 text-emerald-600 border border-emerald-200/80">
+              <Target className="w-4 h-4" />
             </span>
-            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
-              Savings Goals
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+              Savings Targets
             </h1>
           </div>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
-            Track targets, log contributions, and calculate monthly savings requirements.
+            Track milestones, log contributions, and calculate monthly savings requirements.
           </p>
         </div>
 
@@ -157,9 +157,9 @@ export const SavingsGoalsPage = () => {
             variant="primary"
             onClick={handleOpenCreate}
             iconLeft={Plus}
-            className="shadow-sm shadow-brand-600/20 text-xs sm:text-sm"
+            className="self-start sm:self-auto"
           >
-            Create Goal
+            Create Target
           </Button>
         </div>
       </div>
@@ -167,29 +167,29 @@ export const SavingsGoalsPage = () => {
       {/* Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Total Goals */}
-        <Card className="bg-white border-slate-200/80">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Total Goals
+        <Card className="bg-white border-slate-200/90 shadow-subtle">
+          <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+            Total Targets
           </p>
           <div className="flex items-center justify-between mt-1">
-            <h3 className="text-xl font-extrabold text-slate-900">
+            <h3 className="text-2xl font-bold text-slate-900 tabular-nums tracking-tight">
               {goals.length}
             </h3>
-            <span className="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+            <span className="text-[10px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/80">
               {completedGoalsCount} Done
             </span>
           </div>
-          <p className="text-[11px] text-slate-400 mt-1">
+          <p className="text-[11px] text-slate-400 mt-0.5">
             Active financial milestones
           </p>
         </Card>
 
         {/* Total Target Sum */}
-        <Card className="bg-white border-slate-200/80">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+        <Card className="bg-white border-slate-200/90 shadow-subtle">
+          <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
             Combined Target
           </p>
-          <h3 className="text-xl font-extrabold text-slate-900 mt-1">
+          <h3 className="text-2xl font-bold text-slate-900 tabular-nums mt-1 tracking-tight">
             {formatBDT(totalTargetSum)}
           </h3>
           <p className="text-[11px] text-slate-400 mt-0.5">
@@ -198,11 +198,11 @@ export const SavingsGoalsPage = () => {
         </Card>
 
         {/* Total Saved Sum */}
-        <Card className="bg-white border-slate-200/80">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+        <Card className="bg-white border-slate-200/90 shadow-subtle">
+          <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
             Total Saved
           </p>
-          <h3 className="text-xl font-extrabold text-emerald-600 mt-1">
+          <h3 className="text-2xl font-bold text-emerald-600 tabular-nums mt-1 tracking-tight">
             {formatBDT(totalSavedSum)}
           </h3>
           <p className="text-[11px] text-slate-400 mt-0.5">
@@ -211,19 +211,19 @@ export const SavingsGoalsPage = () => {
         </Card>
 
         {/* Overall Completion */}
-        <Card className="bg-white border-slate-200/80">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+        <Card className="bg-white border-slate-200/90 shadow-subtle">
+          <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
             Overall Completion
           </p>
           <div className="flex items-center justify-between mt-1">
-            <h3 className="text-xl font-extrabold text-brand-600">
+            <h3 className="text-2xl font-bold text-slate-900 tabular-nums tracking-tight">
               {overallProgress}%
             </h3>
-            <span className="text-[11px] text-slate-500 font-medium">
+            <span className="text-[11px] text-slate-500 font-medium tabular-nums">
               {formatBDT(Math.max(0, totalTargetSum - totalSavedSum))} to go
             </span>
           </div>
-          <div className="w-full bg-slate-100 rounded-full h-1.5 mt-2 overflow-hidden">
+          <div className="w-full bg-slate-100 rounded-full h-1.5 mt-2.5 overflow-hidden">
             <div
               className="bg-brand-600 h-full rounded-full transition-all duration-300"
               style={{ width: `${overallProgress}%` }}
@@ -233,9 +233,9 @@ export const SavingsGoalsPage = () => {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl max-w-fit">
+      <div className="flex items-center gap-1 p-0.5 bg-slate-100 rounded-lg max-w-fit border border-slate-200/60">
         {[
-          { id: 'ALL', label: `All Goals (${goals.length})` },
+          { id: 'ALL', label: `All (${goals.length})` },
           {
             id: 'IN_PROGRESS',
             label: `In Progress (${goals.filter((g) => g.status === 'IN_PROGRESS').length})`,
@@ -252,7 +252,7 @@ export const SavingsGoalsPage = () => {
           <button
             key={tab.id}
             onClick={() => setStatusFilter(tab.id)}
-            className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+            className={`px-3 py-1 text-xs font-semibold rounded-md transition-all ${
               statusFilter === tab.id
                 ? 'bg-white text-slate-900 shadow-sm'
                 : 'text-slate-600 hover:text-slate-900'
@@ -265,7 +265,7 @@ export const SavingsGoalsPage = () => {
 
       {/* Error state */}
       {error && (
-        <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center justify-between">
+        <div className="p-3.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center justify-between">
           <div className="flex items-center gap-2">
             <AlertCircle className="w-4 h-4 flex-shrink-0" />
             <span>{error}</span>
@@ -274,7 +274,7 @@ export const SavingsGoalsPage = () => {
             variant="ghost"
             size="sm"
             onClick={fetchGoals}
-            className="text-rose-700 hover:bg-rose-100"
+            className="text-rose-700 hover:bg-rose-100 h-7"
           >
             Retry
           </Button>
@@ -283,9 +283,9 @@ export const SavingsGoalsPage = () => {
 
       {/* Goals Grid */}
       {isLoading ? (
-        <div className="p-16 flex flex-col items-center justify-center text-slate-400 bg-white rounded-2xl border border-slate-200">
-          <Loader2 className="w-8 h-8 animate-spin text-brand-600 mb-3" />
-          <p className="text-xs">Loading savings goals...</p>
+        <div className="p-16 flex flex-col items-center justify-center text-slate-400 bg-white rounded-xl border border-slate-200">
+          <Loader2 className="w-7 h-7 animate-spin text-brand-600 mb-2.5" />
+          <p className="text-xs">Loading savings targets...</p>
         </div>
       ) : filteredGoals.length === 0 ? (
         <EmptyState
@@ -301,7 +301,7 @@ export const SavingsGoalsPage = () => {
           onAction={statusFilter === 'ALL' ? handleOpenCreate : () => setStatusFilter('ALL')}
         />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredGoals.map((goal) => {
             const statusConfig = getStatusBadge(goal.status);
             const StatusIcon = statusConfig.icon;
@@ -311,14 +311,14 @@ export const SavingsGoalsPage = () => {
             return (
               <Card
                 key={goal._id}
-                className="hover:border-slate-300 transition-all shadow-subtle hover:shadow-card-hover flex flex-col justify-between"
-                bodyClassName="p-5 space-y-4"
+                className="bg-white border-slate-200/90 shadow-subtle hover:border-slate-300 transition-all flex flex-col justify-between"
+                bodyClassName="p-4 space-y-3.5"
               >
                 <div>
                   {/* Card Header: Goal Name & Status Badge */}
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
-                      <h3 className="text-base font-bold text-slate-900 tracking-tight truncate">
+                      <h3 className="text-sm font-bold text-slate-900 tracking-tight truncate">
                         {goal.name}
                       </h3>
                       {goal.description ? (
@@ -333,23 +333,23 @@ export const SavingsGoalsPage = () => {
                     </div>
 
                     <span
-                      className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border flex-shrink-0 ${statusConfig.className}`}
+                      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium border flex-shrink-0 ${statusConfig.className}`}
                     >
-                      <StatusIcon className="w-3.5 h-3.5" />
+                      <StatusIcon className="w-3 h-3" />
                       {statusConfig.label}
                     </span>
                   </div>
 
                   {/* Progress Bar & Percent */}
-                  <div className="space-y-1.5 mt-4">
+                  <div className="space-y-1 mt-3.5">
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-slate-500 font-medium">Progress</span>
-                      <span className="font-extrabold text-slate-800">
+                      <span className="font-semibold text-slate-800 tabular-nums">
                         {goal.progressPercentage}%
                       </span>
                     </div>
 
-                    <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
                       <div
                         className={`h-full rounded-full transition-all duration-300 ${statusConfig.barClass}`}
                         style={{ width: `${Math.min(goal.progressPercentage, 100)}%` }}
@@ -358,24 +358,24 @@ export const SavingsGoalsPage = () => {
                   </div>
 
                   {/* Metrics Box */}
-                  <div className="p-3 bg-slate-50/80 rounded-xl space-y-2 mt-4 text-xs border border-slate-100">
+                  <div className="p-2.5 bg-slate-50 rounded-lg space-y-1.5 mt-3 text-xs border border-slate-100">
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-500 font-medium">Target Amount:</span>
-                      <span className="font-bold text-slate-800">
+                      <span className="text-slate-500 font-medium">Target:</span>
+                      <span className="font-semibold text-slate-800 tabular-nums">
                         {formatBDT(goal.targetAmount)}
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-500 font-medium">Saved to Date:</span>
-                      <span className="font-bold text-emerald-600">
+                      <span className="text-slate-500 font-medium">Saved:</span>
+                      <span className="font-semibold text-emerald-600 tabular-nums">
                         {formatBDT(goal.totalSaved || 0)}
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between pt-1 border-t border-slate-200/60">
                       <span className="text-slate-500 font-medium">Remaining:</span>
-                      <span className="font-bold text-slate-700">
+                      <span className="font-semibold text-slate-700 tabular-nums">
                         {formatBDT(goal.remainingAmount || 0)}
                       </span>
                     </div>
@@ -388,15 +388,15 @@ export const SavingsGoalsPage = () => {
                         <Calendar className="w-3.5 h-3.5 text-slate-400" />
                         Deadline:
                       </span>
-                      <span className="font-semibold text-slate-700">
+                      <span className="font-medium text-slate-700 tabular-nums">
                         {formatDate(goal.deadline)}
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-500">Time Remaining:</span>
+                      <span className="text-slate-500">Time Left:</span>
                       <span
-                        className={`font-semibold ${
+                        className={`font-medium ${
                           isDone
                             ? 'text-emerald-600'
                             : isOverdue
@@ -415,7 +415,7 @@ export const SavingsGoalsPage = () => {
                     {!isDone && (
                       <div className="flex items-center justify-between pt-1 border-t border-slate-100 text-[11px]">
                         <span className="text-slate-500">Monthly Target:</span>
-                        <span className="font-bold text-brand-600">
+                        <span className="font-semibold text-brand-600 tabular-nums">
                           {formatBDT(goal.requiredMonthlySavings)} / mo
                         </span>
                       </div>
@@ -431,9 +431,9 @@ export const SavingsGoalsPage = () => {
                       size="sm"
                       onClick={() => setContributingGoal(goal)}
                       iconLeft={ArrowDownLeft}
-                      className="h-8 text-xs bg-emerald-600 hover:bg-emerald-700 text-white"
+                      className="h-7 text-xs"
                     >
-                      Add Deposit
+                      Deposit
                     </Button>
 
                     <Button
@@ -441,7 +441,7 @@ export const SavingsGoalsPage = () => {
                       size="sm"
                       onClick={() => setHistoryGoal(goal)}
                       iconLeft={History}
-                      className="h-8 text-xs text-slate-700"
+                      className="h-7 text-xs text-slate-700"
                     >
                       History ({goal.contributionCount || 0})
                     </Button>

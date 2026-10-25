@@ -106,22 +106,22 @@ export const AddContributionModal = ({
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Goal Progress Summary Mini-Card */}
-        <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+        <div className="p-3 rounded-lg bg-slate-50 border border-slate-200/80 space-y-2">
           <div className="flex items-center justify-between text-xs">
             <span className="text-slate-500 font-medium">Goal Target:</span>
-            <span className="font-bold text-slate-800">
+            <span className="font-semibold text-slate-800 tabular-nums">
               {formatBDT(goal.targetAmount)}
             </span>
           </div>
           <div className="flex items-center justify-between text-xs">
             <span className="text-slate-500 font-medium">Currently Saved:</span>
-            <span className="font-bold text-emerald-600">
+            <span className="font-semibold text-emerald-600 tabular-nums">
               {formatBDT(goal.totalSaved || 0)}
             </span>
           </div>
           <div className="flex items-center justify-between text-xs pt-1 border-t border-slate-200/60">
             <span className="text-slate-500 font-medium">Remaining Needed:</span>
-            <span className="font-bold text-slate-700">
+            <span className="font-semibold text-slate-700 tabular-nums">
               {formatBDT(goal.remainingAmount || 0)}
             </span>
           </div>
@@ -148,7 +148,7 @@ export const AddContributionModal = ({
               value={formData.amount}
               onChange={handleChange}
               placeholder="e.g. 5000"
-              className={`w-full pl-8 pr-3 py-2.5 text-sm bg-white border rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-colors ${
+              className={`w-full pl-8 pr-3 py-2 text-xs bg-white border rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
                 errors.amount ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
               }`}
             />
@@ -172,7 +172,7 @@ export const AddContributionModal = ({
             name="date"
             value={formData.date}
             onChange={handleChange}
-            className={`w-full px-3 py-2 text-sm bg-white border rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-colors ${
+            className={`w-full px-2.5 py-2 text-xs bg-white border rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
               errors.date ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
             }`}
           />
@@ -197,7 +197,7 @@ export const AddContributionModal = ({
             onChange={handleChange}
             placeholder="e.g. Monthly transfer from main savings"
             maxLength={250}
-            className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-colors"
+            className="w-full px-2.5 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors"
           />
           {errors.description && (
             <p className="mt-1 text-xs text-rose-500">{errors.description}</p>
@@ -219,7 +219,6 @@ export const AddContributionModal = ({
             type="submit"
             variant="primary"
             loading={isSubmitting}
-            className="bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-500 text-white"
             iconLeft={CheckCircle2}
           >
             Record Deposit

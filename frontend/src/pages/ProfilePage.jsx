@@ -8,8 +8,10 @@ import {
   CheckCircle2,
   KeyRound,
   RefreshCw,
-  Clock,
-  Sparkles,
+  Copy,
+  Check,
+  Lock,
+  Globe,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.jsx';
 import authService from '../services/authService.js';
@@ -21,6 +23,7 @@ import notify from '../utils/notify.js';
 export const ProfilePage = () => {
   const { user, updateUser } = useAuth();
   const [refreshing, setRefreshing] = useState(false);
+  const [copiedId, setCopiedId] = useState(false);
 
   const handleRefresh = async () => {
     setRefreshing(true);
@@ -28,12 +31,21 @@ export const ProfilePage = () => {
       const response = await authService.getMe();
       if (response?.data?.user) {
         updateUser(response.data.user);
-        notify.success('Profile information updated from backend.');
+        notify.success('Profile information refreshed.');
       }
     } catch (err) {
       notify.error(err.message || 'Failed to refresh profile.');
     } finally {
       setRefreshing(false);
+    }
+  };
+
+  const handleCopyId = () => {
+    if (user?._id) {
+      navigator.clipboard.writeText(user._id);
+      setCopiedId(true);
+      notify.success('Account ID copied to clipboard');
+      setTimeout(() => setCopiedId(false), 2000);
     }
   };
 
@@ -43,7 +55,7 @@ export const ProfilePage = () => {
         month: 'long',
         day: 'numeric',
       })
-    : 'Unknown';
+    : 'Active Member';
 
   const getInitials = (name) => {
     if (!name) return 'U';
@@ -56,17 +68,15 @@ export const ProfilePage = () => {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Header with actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div className="space-y-6 max-w-6xl mx-auto">
+      {/* Page Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b border-slate-200/80">
         <div>
-          <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-              User Profile
-            </h1>
-          </div>
-          <p className="text-xs text-slate-500 mt-1">
-            Account identity, personal information, and security settings.
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+            Account Settings
+          </h1>
+          <p className="text-xs text-slate-500 mt-0.5">
+            Manage your personal profile, credentials, and security preferences.
           </p>
         </div>
 
@@ -77,141 +87,213 @@ export const ProfilePage = () => {
             onClick={handleRefresh}
             loading={refreshing}
             iconLeft={RefreshCw}
+            className="text-xs text-slate-700 hover:bg-slate-50"
           >
-            Refresh Profile
+            Refresh
           </Button>
 
           <Link to="/change-password">
-            <Button variant="primary" size="sm" iconLeft={KeyRound}>
-              Change Password
+            <Button
+              variant="primary"
+              size="sm"
+              iconLeft={KeyRound}
+              className="bg-brand-600 hover:bg-brand-700 text-white shadow-sm text-xs"
+            >
+              Update Password
             </Button>
           </Link>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Profile Card & Avatar */}
-        <Card className="text-center p-6 lg:col-span-1">
-          <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-brand-700 via-brand-600 to-indigo-500 flex items-center justify-center text-white text-2xl font-extrabold mx-auto shadow-md shadow-brand-500/20 mb-4">
-            {getInitials(user?.name)}
-          </div>
+        {/* Left Column: Account Identity & Quick Status */}
+        <div className="space-y-6 lg:col-span-1">
+          <Card className="text-center p-6 border-slate-200/90 shadow-subtle">
+            {/* Minimalist, refined avatar monogram */}
+            <div className="w-16 h-16 rounded-full bg-slate-900 text-white flex items-center justify-center text-xl font-bold mx-auto ring-4 ring-slate-100 mb-3 tracking-tight">
+              {getInitials(user?.name)}
+            </div>
 
-          <h2 className="text-base font-bold text-slate-900 tracking-tight">
-            {user?.name}
-          </h2>
-          <p className="text-xs text-slate-500 mt-0.5">{user?.email}</p>
+            <h2 className="text-base font-bold text-slate-900 tracking-tight">
+              {user?.name || 'Account Holder'}
+            </h2>
+            <p className="text-xs text-slate-500 font-mono mt-0.5">{user?.email}</p>
 
-          <div className="mt-4 flex items-center justify-center gap-2">
-            <Badge variant="info" size="sm">
-              {user?.role || 'USER'}
-            </Badge>
-            <Badge variant="success" size="sm" dot>
-              {user?.status || 'active'}
-            </Badge>
-          </div>
-
-          <div className="mt-6 pt-4 border-t border-slate-100 text-left text-xs text-slate-500 space-y-2.5">
-            <div className="flex items-center justify-between">
-              <span className="text-slate-400">Account ID:</span>
-              <span className="font-mono text-[11px] text-slate-700 truncate max-w-[130px]">
-                {user?._id || '--'}
+            <div className="mt-3.5 flex items-center justify-center gap-2">
+              <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold tracking-wide bg-slate-100 text-slate-700 border border-slate-200 uppercase">
+                {user?.role || 'USER'}
+              </span>
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                Active
               </span>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-slate-400">Session Status:</span>
-              <span className="text-emerald-600 font-medium">Active & Secure</span>
-            </div>
-          </div>
-        </Card>
 
-        {/* Detailed Profile Attributes */}
-        <div className="lg:col-span-2 space-y-6">
-          <Card
-            title="Profile Details"
-            subtitle="Your registered personal information and credentials"
-          >
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Full Name */}
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <div className="flex items-center gap-2 text-slate-400 text-xs mb-1">
-                    <User className="w-4 h-4 text-slate-500" />
-                    <span className="font-medium text-slate-500">Full Name</span>
-                  </div>
-                  <p className="text-sm font-semibold text-slate-900">{user?.name}</p>
-                </div>
-
-                {/* Email Address */}
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <div className="flex items-center gap-2 text-slate-400 text-xs mb-1">
-                    <Mail className="w-4 h-4 text-slate-500" />
-                    <span className="font-medium text-slate-500">Email Address</span>
-                  </div>
-                  <p className="text-sm font-semibold text-slate-900 truncate">
-                    {user?.email}
-                  </p>
-                </div>
-
-                {/* Role */}
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <div className="flex items-center gap-2 text-slate-400 text-xs mb-1">
-                    <Shield className="w-4 h-4 text-brand-600" />
-                    <span className="font-medium text-slate-500">System Role</span>
-                  </div>
-                  <p className="text-sm font-semibold text-slate-900 flex items-center gap-1.5">
-                    {user?.role}
-                    {user?.role === 'ADMIN' && (
-                      <span className="text-[10px] text-brand-600 font-bold px-1.5 py-0.5 rounded bg-brand-50 border border-brand-200">
-                        Admin Privileges
-                      </span>
+            <div className="mt-5 pt-4 border-t border-slate-100 text-left text-xs space-y-3">
+              <div>
+                <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">
+                  Account Identifier
+                </span>
+                <div className="flex items-center justify-between mt-1 p-2 rounded-lg bg-slate-50 border border-slate-200/70">
+                  <span className="font-mono text-[11px] text-slate-700 truncate mr-2 select-all">
+                    {user?._id || '--'}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleCopyId}
+                    className="text-slate-400 hover:text-slate-700 transition-colors p-1"
+                    title="Copy Account ID"
+                    aria-label="Copy Account ID"
+                  >
+                    {copiedId ? (
+                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    ) : (
+                      <Copy className="w-3.5 h-3.5" />
                     )}
-                  </p>
-                </div>
-
-                {/* Account Status */}
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <div className="flex items-center gap-2 text-slate-400 text-xs mb-1">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                    <span className="font-medium text-slate-500">Account Status</span>
-                  </div>
-                  <p className="text-sm font-semibold text-emerald-700 capitalize">
-                    {user?.status}
-                  </p>
+                  </button>
                 </div>
               </div>
 
-              {/* Registration Timestamp */}
-              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <Calendar className="w-4 h-4 text-slate-400" />
-                  <div>
-                    <p className="text-xs font-semibold text-slate-800">
-                      Member Since
-                    </p>
-                    <p className="text-[11px] text-slate-500">
-                      Initial account registration date
-                    </p>
-                  </div>
-                </div>
-                <span className="text-xs font-mono font-medium text-slate-700">
-                  {formattedDate}
+              <div className="flex items-center justify-between pt-1 text-slate-500">
+                <span className="flex items-center gap-1.5 text-slate-400">
+                  <Calendar className="w-3.5 h-3.5" />
+                  Member Since:
                 </span>
+                <span className="font-medium text-slate-700">{formattedDate}</span>
+              </div>
+
+              <div className="flex items-center justify-between text-slate-500">
+                <span className="flex items-center gap-1.5 text-slate-400">
+                  <Shield className="w-3.5 h-3.5" />
+                  Session Status:
+                </span>
+                <span className="text-emerald-700 font-medium">Secured</span>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* Right Column: Profile Information & Security Details */}
+        <div className="lg:col-span-2 space-y-6">
+          {/* Personal Information */}
+          <Card
+            title="Profile Details"
+            subtitle="Your registered personal information and credentials"
+            className="border-slate-200/90 shadow-subtle"
+          >
+            <div className="divide-y divide-slate-100 text-xs">
+              {/* Full Name */}
+              <div className="py-3 sm:py-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                <div className="flex items-center gap-2 text-slate-500 font-medium sm:w-1/3">
+                  <User className="w-4 h-4 text-slate-400" />
+                  <span>Full Name</span>
+                </div>
+                <div className="sm:w-2/3">
+                  <span className="font-semibold text-slate-900 text-sm">
+                    {user?.name || 'Not provided'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Email Address */}
+              <div className="py-3 sm:py-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                <div className="flex items-center gap-2 text-slate-500 font-medium sm:w-1/3">
+                  <Mail className="w-4 h-4 text-slate-400" />
+                  <span>Email Address</span>
+                </div>
+                <div className="sm:w-2/3 flex items-center gap-2">
+                  <span className="font-mono text-xs text-slate-800">
+                    {user?.email}
+                  </span>
+                  <Badge variant="success" size="sm">
+                    Verified
+                  </Badge>
+                </div>
+              </div>
+
+              {/* Role & Privileges */}
+              <div className="py-3 sm:py-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                <div className="flex items-center gap-2 text-slate-500 font-medium sm:w-1/3">
+                  <Shield className="w-4 h-4 text-slate-400" />
+                  <span>System Role</span>
+                </div>
+                <div className="sm:w-2/3 flex items-center gap-2">
+                  <span className="font-medium text-slate-800">
+                    {user?.role === 'ADMIN' ? 'System Administrator' : 'Standard User'}
+                  </span>
+                  {user?.role === 'ADMIN' && (
+                    <Badge variant="info" size="sm">
+                      Full Admin Access
+                    </Badge>
+                  )}
+                </div>
+              </div>
+
+              {/* Default Currency */}
+              <div className="py-3 sm:py-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                <div className="flex items-center gap-2 text-slate-500 font-medium sm:w-1/3">
+                  <Globe className="w-4 h-4 text-slate-400" />
+                  <span>Base Currency</span>
+                </div>
+                <div className="sm:w-2/3 flex items-center gap-2">
+                  <span className="font-medium text-slate-800 font-mono">
+                    BDT (৳)
+                  </span>
+                  <span className="text-[11px] text-slate-400">
+                    Bangladeshi Taka
+                  </span>
+                </div>
               </div>
             </div>
           </Card>
 
-          {/* Security Recommendation Card */}
-          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-3 text-xs text-slate-700">
-            <Shield className="w-4 h-4 text-brand-600 flex-shrink-0 mt-0.5" />
-            <div className="space-y-1">
-              <p className="font-semibold text-slate-800">
-                Account Security Notice
-              </p>
-              <p className="text-slate-500 leading-relaxed">
-                Your session is protected with secure HTTP-only cookies. To update your password or ensure your credentials remain safe, visit the <Link to="/change-password" className="text-brand-600 font-medium hover:underline">Change Password</Link> page.
-              </p>
+          {/* Security & Authentication Panel */}
+          <Card
+            title="Security & Authentication"
+            subtitle="Manage your password and active authentication protection"
+            className="border-slate-200/90 shadow-subtle"
+          >
+            <div className="divide-y divide-slate-100 text-xs">
+              {/* Password Setting Row */}
+              <div className="py-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div className="space-y-0.5">
+                  <div className="flex items-center gap-2 font-medium text-slate-800">
+                    <Lock className="w-4 h-4 text-slate-400" />
+                    <span>Account Password</span>
+                  </div>
+                  <p className="text-slate-500 text-[11px]">
+                    Last updated during account setup. Use a strong, unique password.
+                  </p>
+                </div>
+                <Link to="/change-password">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    iconLeft={KeyRound}
+                    className="text-xs text-slate-700 whitespace-nowrap"
+                  >
+                    Change Password
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Session Security Row */}
+              <div className="py-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div className="space-y-0.5">
+                  <div className="flex items-center gap-2 font-medium text-slate-800">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <span>HTTP-Only Cookie Session</span>
+                  </div>
+                  <p className="text-slate-500 text-[11px]">
+                    Your authentication token is stored securely in an encrypted HTTP-only cookie to prevent XSS attacks.
+                  </p>
+                </div>
+                <Badge variant="success" size="sm">
+                  Active & Encrypted
+                </Badge>
+              </div>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
     </div>

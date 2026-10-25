@@ -22,24 +22,24 @@ export const ConfirmDialog = ({
       <div className="text-center sm:text-left">
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
           <div
-            className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
+            className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
               variant === 'danger'
-                ? 'bg-rose-100 text-rose-600'
-                : 'bg-amber-100 text-amber-600'
+                ? 'bg-rose-50 text-rose-600 border border-rose-200/80'
+                : 'bg-amber-50 text-amber-600 border border-amber-200/80'
             }`}
           >
             {variant === 'danger' ? (
-              <Trash2 className="w-6 h-6" />
+              <Trash2 className="w-5 h-5" />
             ) : (
-              <AlertTriangle className="w-6 h-6" />
+              <AlertTriangle className="w-5 h-5" />
             )}
           </div>
 
-          <div className="flex-1 mt-2 sm:mt-0">
-            <h3 className="text-lg font-bold text-slate-900 tracking-tight">
+          <div className="flex-1 mt-1 sm:mt-0">
+            <h3 className="text-base font-bold text-slate-900 tracking-tight">
               {title}
             </h3>
-            <p className="text-sm text-slate-500 mt-2 leading-relaxed">
+            <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
               {message}
             </p>
           </div>

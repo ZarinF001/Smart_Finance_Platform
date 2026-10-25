@@ -187,7 +187,7 @@ export const BudgetFormModal = ({
               value={formData.category}
               onChange={handleChange}
               disabled={isEditing} // Category cannot be changed on edit to avoid confusion
-              className={`w-full px-3 py-2.5 text-sm bg-white border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-colors ${
+              className={`w-full px-2.5 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
                 isEditing ? 'bg-slate-50 cursor-not-allowed opacity-80' : ''
               }`}
             >
@@ -224,7 +224,7 @@ export const BudgetFormModal = ({
               value={formData.limit}
               onChange={handleChange}
               placeholder="e.g. 15000"
-              className={`w-full pl-8 pr-4 py-2.5 text-sm bg-white border rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-colors ${
+              className={`w-full pl-8 pr-3 py-2 text-xs bg-white border rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
                 errors.limit ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
               }`}
             />
@@ -250,7 +250,7 @@ export const BudgetFormModal = ({
               value={formData.month}
               onChange={handleChange}
               disabled={isEditing}
-              className={`w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-colors ${
+              className={`w-full px-2.5 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
                 isEditing ? 'bg-slate-50 cursor-not-allowed opacity-80' : ''
               }`}
             >
@@ -276,7 +276,7 @@ export const BudgetFormModal = ({
               value={formData.year}
               onChange={handleChange}
               disabled={isEditing}
-              className={`w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-colors ${
+              className={`w-full px-2.5 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
                 isEditing ? 'bg-slate-50 cursor-not-allowed opacity-80' : ''
               }`}
             >

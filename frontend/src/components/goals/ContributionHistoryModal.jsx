@@ -59,16 +59,16 @@ export const ContributionHistoryModal = ({
     >
       <div className="space-y-4">
         {/* Goal Summary Mini-Banner */}
-        <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+        <div className="p-3 rounded-lg bg-slate-50 border border-slate-200/80 flex items-center justify-between">
           <div>
-            <p className="text-xs text-slate-500 font-medium">Total Saved to Date</p>
-            <p className="text-lg font-extrabold text-emerald-600">
+            <p className="text-[11px] text-slate-500 font-medium">Total Saved to Date</p>
+            <p className="text-base font-bold text-emerald-600 tabular-nums">
               {formatBDT(goal.totalSaved || 0)}
             </p>
           </div>
           <div className="text-right">
-            <p className="text-xs text-slate-500 font-medium">Target Amount</p>
-            <p className="text-sm font-bold text-slate-800">
+            <p className="text-[11px] text-slate-500 font-medium">Target Amount</p>
+            <p className="text-sm font-semibold text-slate-800 tabular-nums">
               {formatBDT(goal.targetAmount)}
             </p>
           </div>
@@ -81,7 +81,7 @@ export const ContributionHistoryModal = ({
             <p className="text-xs">Loading deposits...</p>
           </div>
         ) : error ? (
-          <div className="p-4 rounded-xl bg-rose-50 text-rose-700 text-xs">
+          <div className="p-3.5 rounded-lg bg-rose-50 text-rose-700 text-xs border border-rose-200">
             {error}
           </div>
         ) : contributions.length === 0 ? (
@@ -91,24 +91,24 @@ export const ContributionHistoryModal = ({
             description="No savings contributions have been logged for this goal yet."
           />
         ) : (
-          <div className="max-h-80 overflow-y-auto divide-y divide-slate-100 rounded-xl border border-slate-200">
+          <div className="max-h-80 overflow-y-auto divide-y divide-slate-100 rounded-lg border border-slate-200">
             {contributions.map((c) => (
               <div
                 key={c._id}
-                className="p-3.5 flex items-center justify-between hover:bg-slate-50/80 transition-colors"
+                className="p-3 flex items-center justify-between hover:bg-slate-50/70 transition-colors"
               >
                 <div>
-                  <p className="text-xs font-semibold text-slate-800 flex items-center gap-1.5">
+                  <p className="text-xs font-medium text-slate-800 flex items-center gap-1.5 tabular-nums">
                     <Calendar className="w-3.5 h-3.5 text-slate-400" />
                     {formatDate(c.date)}
                   </p>
                   <p className="text-[11px] text-slate-500 mt-0.5">
-                    {c.description || <span className="italic text-slate-300">No memo provided</span>}
+                    {c.description || <span className="italic text-slate-400">No memo provided</span>}
                   </p>
                 </div>
 
                 <div className="text-right">
-                  <p className="text-xs font-bold text-emerald-600">
+                  <p className="text-xs font-semibold text-emerald-600 tabular-nums">
                     +{formatBDT(c.amount)}
                   </p>
                 </div>
