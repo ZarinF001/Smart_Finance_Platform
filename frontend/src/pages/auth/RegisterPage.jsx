@@ -69,14 +69,11 @@ export const RegisterPage = () => {
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <Badge variant="info" size="sm" className="mb-2">
-          New Account
-        </Badge>
         <h2 className="text-xl font-bold text-slate-900 tracking-tight">
-          Create Your Account
+          Create Your Split Easy Account
         </h2>
         <p className="text-xs text-slate-500 mt-1">
-          Start tracking your finances, budgets, and savings goals.
+          Start tracking your income, expenses, budgets, and savings goals.
         </p>
       </div>
 

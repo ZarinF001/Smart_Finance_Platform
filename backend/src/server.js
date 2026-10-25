@@ -17,12 +17,22 @@ const startServer = async () => {
     // Start Express HTTP server
     server = app.listen(env.PORT, () => {
       console.log('====================================================');
-      console.log(' 💰 Personal Finance Management API');
+      console.log(' 💰 Split Easy API');
       console.log(` 🚀 Server running at: http://localhost:${env.PORT}`);
       console.log(` 🌐 Health endpoint:  http://localhost:${env.PORT}/api/health`);
       console.log(` 🔒 Environment:      ${env.NODE_ENV}`);
       console.log(` 🔗 Allowed Origin:   ${env.CLIENT_URL}`);
       console.log('====================================================');
+    });
+
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.error(`❌ Port ${env.PORT} is already in use by another process.`);
+        console.error(`💡 Tip: Run "Stop-Process -Id (Get-NetTCPConnection -LocalPort ${env.PORT}).OwningProcess -Force" to free the port.`);
+      } else {
+        console.error('❌ Server error:', err.message);
+      }
+      process.exit(1);
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error.message);

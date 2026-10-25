@@ -37,7 +37,7 @@ export const ProtectedRoute = ({ requiredRole }) => {
           </div>
           <h2 className="text-lg font-bold text-slate-900">Access Restricted</h2>
           <p className="text-xs text-slate-500 mt-1 mb-4">
-            This module requires <span className="font-semibold">{requiredRole}</span> privileges. Your current role is <span className="font-semibold">{user.role}</span>.
+            This page requires <span className="font-semibold">{requiredRole}</span> privileges. Your current role is <span className="font-semibold">{user.role}</span>.
           </p>
           <Button variant="primary" size="sm" onClick={() => window.history.back()}>
             Go Back

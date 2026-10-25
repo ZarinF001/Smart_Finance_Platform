@@ -55,14 +55,11 @@ export const LoginPage = () => {
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <Badge variant="info" size="sm" className="mb-2">
-          Secure Session
-        </Badge>
         <h2 className="text-xl font-bold text-slate-900 tracking-tight">
-          Sign In to FinFlow
+          Sign In to Split Easy
         </h2>
         <p className="text-xs text-slate-500 mt-1">
-          Access your personal finance dashboard and analytics.
+          Enter your credentials to access your financial dashboard.
         </p>
       </div>
 

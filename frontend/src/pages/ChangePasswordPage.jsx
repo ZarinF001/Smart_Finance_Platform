@@ -105,9 +105,6 @@ export const ChangePasswordPage = () => {
           <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
             Security & Password
           </h1>
-          <Badge variant="info" size="sm">
-            Protected
-          </Badge>
         </div>
         <p className="text-xs text-slate-500 mt-1">
           Update your login password to maintain high account security.
@@ -132,7 +129,7 @@ export const ChangePasswordPage = () => {
 
       <Card
         title="Change Account Password"
-        subtitle="Verifies current credentials before saving new password with bcrypt"
+        subtitle="Enter your current password and choose a new secure password"
       >
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Current Password Field */}

@@ -7,17 +7,13 @@ import {
   ArrowUpDown,
   PieChart,
   Target,
-  BarChart3,
   User,
   KeyRound,
-  Activity,
   LogOut,
   WalletCards,
-  Shield,
   X,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
-import Badge from '../common/Badge.jsx';
 import { cn } from '../../utils/cn.js';
 
 export const DashboardSidebar = ({ isOpen, onClose }) => {
@@ -37,72 +33,51 @@ export const DashboardSidebar = ({ isOpen, onClose }) => {
           name: 'Dashboard',
           path: '/dashboard',
           icon: LayoutDashboard,
-          functional: true,
         },
       ],
     },
     {
-      label: 'Financial Management',
+      label: 'Finances',
       items: [
         {
           name: 'Income',
           path: '/income',
           icon: ArrowDownLeft,
-          functional: true,
         },
         {
           name: 'Expenses',
           path: '/expenses',
           icon: ArrowUpRight,
-          functional: true,
         },
         {
           name: 'Transactions',
           path: '/transactions',
           icon: ArrowUpDown,
-          functional: true,
         },
         {
           name: 'Budgets',
           path: '/budgets',
           icon: PieChart,
-          functional: true,
         },
         {
           name: 'Savings Goals',
           path: '/goals',
           icon: Target,
-          functional: true,
-        },
-        {
-          name: 'Reports & Analytics',
-          path: '/reports',
-          icon: BarChart3,
-          functional: false,
-          badge: 'Phase 4',
         },
       ],
     },
     {
-      label: 'Account & System',
+      label: 'Account',
       items: [
         {
           name: 'My Profile',
           path: '/profile',
           icon: User,
-          functional: true,
         },
         {
           name: 'Change Password',
           path: '/change-password',
           icon: KeyRound,
-          functional: true,
-        },
-        {
-          name: 'API Diagnostics',
-          path: '/health',
-          icon: Activity,
-          functional: true,
         },
       ],
     },
@@ -145,13 +120,15 @@ export const DashboardSidebar = ({ isOpen, onClose }) => {
               </div>
               <div>
                 <span className="text-base font-bold text-white tracking-tight flex items-center gap-1.5">
-                  FinFlow
-                  <span className="text-[9px] uppercase font-semibold px-1.5 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">
-                    {user?.role || 'App'}
-                  </span>
+                  Split Easy
+                  {user?.role === 'ADMIN' && (
+                    <span className="text-[9px] uppercase font-semibold px-1.5 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">
+                      Admin
+                    </span>
+                  )}
                 </span>
                 <p className="text-[10px] text-slate-400 font-medium leading-none">
-                  Personal Finance System
+                  Personal Finance
                 </p>
               </div>
             </Link>
@@ -175,26 +152,6 @@ export const DashboardSidebar = ({ isOpen, onClose }) => {
                 <div className="space-y-0.5">
                   {section.items.map((item) => {
                     const Icon = item.icon;
-
-                    if (!item.functional) {
-                      return (
-                        <div
-                          key={item.name}
-                          className="flex items-center justify-between px-3 py-2 text-xs font-medium text-slate-500 rounded-lg cursor-not-allowed select-none hover:bg-slate-800/30 transition-colors"
-                          title={`${item.name} is scheduled for development in ${item.badge || 'a future sprint'}`}
-                        >
-                          <div className="flex items-center gap-2.5">
-                            <Icon className="w-4 h-4 text-slate-600" />
-                            <span>{item.name}</span>
-                          </div>
-                          {item.badge && (
-                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700/60 font-mono">
-                              {item.badge}
-                            </span>
-                          )}
-                        </div>
-                      );
-                    }
 
                     return (
                       <NavLink
@@ -252,7 +209,7 @@ export const DashboardSidebar = ({ isOpen, onClose }) => {
             <button
               onClick={handleLogout}
               className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors flex-shrink-0"
-              title="Sign out of FinFlow"
+              title="Sign out of Split Easy"
               aria-label="Sign out"
             >
               <LogOut className="w-4 h-4" />

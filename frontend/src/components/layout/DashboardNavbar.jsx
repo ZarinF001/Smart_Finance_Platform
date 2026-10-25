@@ -2,24 +2,18 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {
   Menu,
-  Bell,
   User,
   KeyRound,
-  Activity,
   LogOut,
   ChevronDown,
-  ShieldCheck,
-  CheckCircle2,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import Badge from '../common/Badge.jsx';
-import useApiHealth from '../../hooks/useApiHealth.js';
 
 export const DashboardNavbar = ({ onToggleSidebar }) => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const { data, loading, error } = useApiHealth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -75,9 +69,6 @@ export const DashboardNavbar = ({ onToggleSidebar }) => {
       .slice(0, 2);
   };
 
-  const isHealthy = !loading && !error && data?.database?.connected;
-  const isDegraded = !loading && !error && !data?.database?.connected;
-
   return (
     <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/80">
       <div className="px-4 sm:px-6 lg:px-8">
@@ -97,34 +88,13 @@ export const DashboardNavbar = ({ onToggleSidebar }) => {
                 {getPageTitle()}
               </h1>
               <p className="text-[11px] text-slate-400 hidden sm:block">
-                Personal Finance Platform
+                Split Easy Finance
               </p>
             </div>
           </div>
 
-          {/* Right section: System health pill & Profile menu */}
+          {/* Right section: Profile menu */}
           <div className="flex items-center gap-3">
-            {/* Live API & DB health pill */}
-            <Link to="/health" className="hidden sm:inline-flex" title="View API Diagnostics">
-              {loading ? (
-                <Badge variant="neutral" size="sm" dot>
-                  Checking API...
-                </Badge>
-              ) : isHealthy ? (
-                <Badge variant="success" size="sm" dot>
-                  System Healthy
-                </Badge>
-              ) : isDegraded ? (
-                <Badge variant="warning" size="sm" dot>
-                  API Online (DB Offline)
-                </Badge>
-              ) : (
-                <Badge variant="error" size="sm" dot>
-                  API Offline
-                </Badge>
-              )}
-            </Link>
-
             {/* User Profile Dropdown Menu */}
             <div className="relative" ref={dropdownRef}>
               <button
@@ -189,15 +159,6 @@ export const DashboardNavbar = ({ onToggleSidebar }) => {
                     >
                       <KeyRound className="w-4 h-4 text-slate-400" />
                       <span>Change Password</span>
-                    </Link>
-
-                    <Link
-                      to="/health"
-                      onClick={() => setDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-brand-600 transition-colors"
-                    >
-                      <Activity className="w-4 h-4 text-slate-400" />
-                      <span>API Diagnostics</span>
                     </Link>
                   </div>
 

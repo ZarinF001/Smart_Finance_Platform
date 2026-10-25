@@ -11,11 +11,11 @@ export const AuthLayout = () => {
             <WalletCards className="w-6 h-6" />
           </div>
           <span className="text-2xl font-bold text-slate-900 tracking-tight">
-            FinFlow
+            Split Easy
           </span>
         </Link>
         <p className="text-xs text-slate-500">
-          Personal Finance Management Platform
+          Personal Finance Management
         </p>
       </div>
 
@@ -25,8 +25,8 @@ export const AuthLayout = () => {
         </div>
 
         <div className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-400">
-          <ShieldCheck className="w-4 h-4 text-slate-400" />
-          <span>Secure Academic Sandbox • Phase 1 Foundation</span>
+          <ShieldCheck className="w-4 h-4 text-emerald-500" />
+          <span>Encrypted & secure session • Private financial tracking</span>
         </div>
       </div>
     </div>

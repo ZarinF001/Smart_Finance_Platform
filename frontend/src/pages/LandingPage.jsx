@@ -1,56 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  WalletCards,
-  ShieldCheck,
-  Layers,
   ArrowRight,
   TrendingUp,
   PieChart,
   Target,
-  BarChart3,
+  ShieldCheck,
+  ArrowUpDown,
   CheckCircle2,
   Lock,
-  Database,
-  Activity,
-  UserCheck,
+  Wallet,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.jsx';
 import Button from '../components/common/Button.jsx';
-import Badge from '../components/common/Badge.jsx';
 import Card from '../components/common/Card.jsx';
 
 export const LandingPage = () => {
   const { isAuthenticated, user } = useAuth();
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-12 py-4">
       {/* Hero Welcome Section */}
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-navy-900 to-brand-950 text-white p-8 sm:p-12 lg:p-16 border border-slate-800 shadow-xl">
-        <div className="relative z-10 max-w-3xl space-y-5">
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge
-              variant="info"
-              size="md"
-              dot
-              className="bg-brand-500/20 text-brand-200 border-brand-400/30"
-            >
-              Academic Software Architecture
-            </Badge>
-            <span className="text-xs text-slate-400 font-mono">
-              University Project • Full-Stack
-            </span>
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-navy-900 to-brand-950 text-white p-8 sm:p-12 lg:p-16 border border-slate-800 shadow-xl">
+        <div className="relative z-10 max-w-3xl space-y-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-400/20 text-brand-300 text-xs font-medium">
+            <Wallet className="w-3.5 h-3.5" />
+            <span>Smart Personal Finance Management</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-            Personal Finance <br />
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+            Take control of your money with{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 via-indigo-200 to-emerald-300">
-              Management Platform
+              Split Easy
             </span>
           </h1>
 
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            An academic full-stack platform designed to help students and individuals monitor cash flow, plan monthly budgets, set savings goals, and analyze spending patterns securely.
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+            Effortlessly monitor your daily cash flow, plan monthly category budgets, record incremental savings contributions, and reach your financial milestones with confidence.
           </p>
 
           <div className="pt-2 flex flex-wrap items-center gap-3.5">
@@ -82,149 +68,143 @@ export const LandingPage = () => {
                     variant="outline"
                     size="lg"
                     className="text-white border-slate-700 hover:bg-white/10 font-semibold"
-                    iconLeft={UserCheck}
                   >
                     Sign In
                   </Button>
                 </Link>
               </>
             )}
-
-            <Link to="/health">
-              <Button
-                variant="ghost"
-                size="lg"
-                className="text-slate-300 hover:text-white hover:bg-white/5"
-                iconLeft={Activity}
-              >
-                API Diagnostics
-              </Button>
-            </Link>
           </div>
         </div>
 
-        {/* Decorative backdrop glow */}
+        {/* Subtle decorative glow */}
         <div className="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-brand-600/20 blur-3xl pointer-events-none" />
         <div className="absolute right-1/4 -top-20 w-80 h-80 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none" />
       </section>
 
-      {/* Development Status Highlights */}
-      <section className="space-y-4">
+      {/* Core Feature Pillars */}
+      <section className="space-y-6">
         <div>
-          <h2 className="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
-            <Layers className="w-5 h-5 text-brand-600" />
-            Platform Capabilities & Current Progress
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+            Designed for simple, stress-free money management
           </h2>
-          <p className="text-xs text-slate-500">
-            Current release status across the four development phases.
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+            Everything you need to track spending, stay within limits, and build lasting financial habits.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {/* Phase 1 card */}
-          <Card className="border-emerald-200/80 bg-gradient-to-b from-white to-emerald-50/20">
-            <div className="flex items-center justify-between mb-2">
-              <Badge variant="success" size="sm" dot>
-                Phase 1 Active
-              </Badge>
-              <Database className="w-4 h-4 text-emerald-600" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Feature 1 */}
+          <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-subtle hover:border-slate-300 transition-colors space-y-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+              <TrendingUp className="w-5 h-5" />
             </div>
             <h3 className="text-sm font-bold text-slate-900">
-              System Architecture
+              Income & Expense Tracking
             </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              Express REST API, Mongoose ODM, Vite React, and centralized error handling.
+            <p className="text-xs text-slate-500 leading-relaxed">
+              Log daily earnings and expenditures with category tags and payment methods. Keep your transaction ledger organized and searchable.
             </p>
-          </Card>
+          </div>
 
-          {/* Phase 2 card */}
-          <Card className="border-emerald-200/80 bg-gradient-to-b from-white to-emerald-50/20">
-            <div className="flex items-center justify-between mb-2">
-              <Badge variant="success" size="sm" dot>
-                Phase 2 Active
-              </Badge>
-              <Lock className="w-4 h-4 text-emerald-600" />
+          {/* Feature 2 */}
+          <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-subtle hover:border-slate-300 transition-colors space-y-3">
+            <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+              <PieChart className="w-5 h-5" />
             </div>
             <h3 className="text-sm font-bold text-slate-900">
-              Authentication & Roles
+              Category Budgets
             </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              Bcrypt hashing, JWT generation, HTTP-only cookies, and profile management.
+            <p className="text-xs text-slate-500 leading-relaxed">
+              Set monthly spending caps for dining, groceries, utilities, and transport. Automatic gauges alert you before you overspend.
             </p>
-          </Card>
+          </div>
 
-          {/* Phase 3 card (Active) */}
-          <Card className="border-emerald-200/80 bg-gradient-to-b from-white to-emerald-50/20">
-            <div className="flex items-center justify-between mb-2">
-              <Badge variant="success" size="sm" dot>
-                Phase 3 Active
-              </Badge>
-              <TrendingUp className="w-4 h-4 text-emerald-600" />
+          {/* Feature 3 */}
+          <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-subtle hover:border-slate-300 transition-colors space-y-3">
+            <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center">
+              <Target className="w-5 h-5" />
             </div>
-            <h3 className="text-sm font-bold text-slate-800">
-              Financial Core (Modules 1 & 2)
+            <h3 className="text-sm font-bold text-slate-900">
+              Savings Targets
             </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              Incomes, expenses, unified ledger, category budgets, and savings goals.
+            <p className="text-xs text-slate-500 leading-relaxed">
+              Plan for emergencies, travel, or large purchases. Record deposit contributions and calculate exact required monthly savings.
             </p>
-          </Card>
+          </div>
 
-          {/* Phase 4 card (Upcoming) */}
-          <Card className="border-slate-200 bg-white">
-            <div className="flex items-center justify-between mb-2">
-              <Badge variant="neutral" size="sm">
-                Phase 4 (Future)
-              </Badge>
-              <BarChart3 className="w-4 h-4 text-slate-400" />
+          {/* Feature 4 */}
+          <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-subtle hover:border-slate-300 transition-colors space-y-3">
+            <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center">
+              <ShieldCheck className="w-5 h-5" />
             </div>
-            <h3 className="text-sm font-bold text-slate-800">
-              Analytics & Reports
+            <h3 className="text-sm font-bold text-slate-900">
+              Private & Secure
             </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              Visual cash-flow graphs, category analytics, and exportable financial reports.
+            <p className="text-xs text-slate-500 leading-relaxed">
+              Your financial records belong exclusively to you. Secured with HTTP-only session cookies and strict tenant data isolation.
             </p>
-          </Card>
+          </div>
         </div>
       </section>
 
-      {/* Security & Data Integrity Feature Grid */}
+      {/* Trust & Data Security Grid */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-subtle space-y-2">
-          <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-3">
-            <ShieldCheck className="w-5 h-5" />
+          <div className="w-9 h-9 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-2">
+            <ShieldCheck className="w-4 h-4" />
           </div>
           <h3 className="text-sm font-bold text-slate-900">
             HTTP-Only Cookie Sessions
           </h3>
           <p className="text-xs text-slate-500 leading-relaxed">
-            Authentication tokens never touch JavaScript local storage, ensuring strong defense against cross-site scripting (XSS) leaks.
+            Authentication tokens never touch JavaScript local storage, ensuring strong protection against cross-site scripting (XSS) vulnerabilities.
           </p>
         </div>
 
         <div className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-subtle space-y-2">
-          <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
-            <CheckCircle2 className="w-5 h-5" />
+          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2">
+            <CheckCircle2 className="w-4 h-4" />
           </div>
           <h3 className="text-sm font-bold text-slate-900">
-            Zod Schema Validation
+            Validated Calculations
           </h3>
           <p className="text-xs text-slate-500 leading-relaxed">
-            Every incoming payload is validated against strict schemas, enforcing sanitized inputs and email normalization.
+            All budgets, remaining amounts, and ledger totals are dynamically computed directly by backend pipelines rather than trusted from the client.
           </p>
         </div>
 
         <div className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-subtle space-y-2">
-          <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-3">
-            <Lock className="w-5 h-5" />
+          <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-2">
+            <Lock className="w-4 h-4" />
           </div>
           <h3 className="text-sm font-bold text-slate-900">
-            Role-Based Authorization
+            Strict Data Isolation
           </h3>
           <p className="text-xs text-slate-500 leading-relaxed">
-            Standard accounts are restricted to user-level operations, while admin functions require cryptographically verified role permissions.
+            Every record is strictly associated with your user ID. Unauthorized queries or cross-account access attempts are immediately rejected.
           </p>
         </div>
       </section>
+
+      {/* Call to action card */}
+      {!isAuthenticated && (
+        <section className="p-8 sm:p-10 rounded-3xl bg-slate-100 border border-slate-200/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+          <div className="space-y-1">
+            <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
+              Ready to take charge of your personal finances?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-500">
+              Create your free account today and start tracking your income, expenses, and savings.
+            </p>
+          </div>
+          <Link to="/register" className="flex-shrink-0">
+            <Button variant="primary" size="lg" className="bg-brand-600 hover:bg-brand-500 text-white font-semibold">
+              Get Started in Seconds
+            </Button>
+          </Link>
+        </section>
+      )}
     </div>
   );
 };

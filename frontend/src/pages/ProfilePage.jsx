@@ -64,12 +64,9 @@ export const ProfilePage = () => {
             <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
               User Profile
             </h1>
-            <Badge variant="info" size="sm">
-              Live API Data
-            </Badge>
           </div>
           <p className="text-xs text-slate-500 mt-1">
-            Account identity, system permissions, and authentication metadata.
+            Account identity, personal information, and security settings.
           </p>
         </div>
 
@@ -121,8 +118,8 @@ export const ProfilePage = () => {
               </span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-slate-400">Security Mode:</span>
-              <span className="text-emerald-600 font-medium">HTTP-only Cookie</span>
+              <span className="text-slate-400">Session Status:</span>
+              <span className="text-emerald-600 font-medium">Active & Secure</span>
             </div>
           </div>
         </Card>
@@ -131,7 +128,7 @@ export const ProfilePage = () => {
         <div className="lg:col-span-2 space-y-6">
           <Card
             title="Profile Details"
-            subtitle="Verified credentials currently stored in MongoDB"
+            subtitle="Your registered personal information and credentials"
           >
             <div className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -203,15 +200,15 @@ export const ProfilePage = () => {
             </div>
           </Card>
 
-          {/* Backend Security Notice Card */}
-          <div className="p-4 rounded-xl bg-brand-50/60 border border-brand-200/70 flex items-start gap-3 text-xs text-brand-900">
-            <Sparkles className="w-4 h-4 text-brand-600 flex-shrink-0 mt-0.5" />
+          {/* Security Recommendation Card */}
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-3 text-xs text-slate-700">
+            <Shield className="w-4 h-4 text-brand-600 flex-shrink-0 mt-0.5" />
             <div className="space-y-1">
-              <p className="font-semibold text-brand-800">
-                Security & Role Information
+              <p className="font-semibold text-slate-800">
+                Account Security Notice
               </p>
-              <p className="text-brand-700 leading-relaxed">
-                Roles and account status are strictly governed by the backend. System administrators can be provisioned through the server seed script (<code className="bg-brand-100 px-1 py-0.5 rounded font-mono text-[11px]">npm run seed:admin</code>).
+              <p className="text-slate-500 leading-relaxed">
+                Your session is protected with secure HTTP-only cookies. To update your password or ensure your credentials remain safe, visit the <Link to="/change-password" className="text-brand-600 font-medium hover:underline">Change Password</Link> page.
               </p>
             </div>
           </div>

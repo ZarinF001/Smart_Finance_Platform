@@ -1,4 +1,4 @@
-# 💰 Personal Finance Management System
+# 💰 Split Easy — Personal Finance Management System
 
 A full-stack, modular web application designed for students and individuals to track personal income, expenses, budgets, and savings goals.
 

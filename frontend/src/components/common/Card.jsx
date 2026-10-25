@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '../../utils/cn.js';
 
 /**
- * Reusable Card component for dashboard and module panels
+ * Reusable Card component for dashboard and view panels
  */
 export const Card = ({
   children,

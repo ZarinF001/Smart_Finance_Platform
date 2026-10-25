@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
     const response = await authService.register({ name, email, password });
     if (response?.data?.user) {
       setUser(response.data.user);
-      notify.success('Account created successfully! Welcome to FinFlow.');
+      notify.success('Account created successfully! Welcome to Split Easy.');
     }
     return response.data;
   };

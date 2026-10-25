@@ -1,6 +1,14 @@
+import dns from 'node:dns';
 import mongoose from 'mongoose';
 import { env } from './env.js';
 import { DB_CONNECTION_STATES } from '../constants/index.js';
+
+// Configure reliable DNS servers to prevent querySrv EBADRESP with MongoDB Atlas SRV records
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1']);
+} catch {
+  // Fall back to system DNS if restricted
+}
 
 // Setup connection lifecycle event handlers
 mongoose.connection.on('connected', () => {
@@ -22,7 +30,7 @@ mongoose.connection.on('disconnected', () => {
 export const connectDB = async () => {
   try {
     const conn = await mongoose.connect(env.MONGODB_URI, {
-      serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of hanging
+      serverSelectionTimeoutMS: 10000,
     });
     console.log(`🚀 [MongoDB] Host: ${conn.connection.host}`);
     return true;
