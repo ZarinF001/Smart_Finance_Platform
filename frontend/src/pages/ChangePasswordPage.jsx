@@ -247,25 +247,22 @@ export const ChangePasswordPage = () => {
             {/* Live Password Rules Feedback */}
             <div className="mt-2.5 flex flex-wrap items-center gap-3 text-[11px]">
               <span
-                className={`flex items-center gap-1 ${
-                  isNewPasswordLongEnough ? 'text-emerald-600' : 'text-slate-400'
-                }`}
+                className={`flex items-center gap-1 ${isNewPasswordLongEnough ? 'text-emerald-600' : 'text-slate-400'
+                  }`}
               >
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 Min 6 characters
               </span>
               <span
-                className={`flex items-center gap-1 ${
-                  isDifferentFromCurrent ? 'text-emerald-600' : 'text-slate-400'
-                }`}
+                className={`flex items-center gap-1 ${isDifferentFromCurrent ? 'text-emerald-600' : 'text-slate-400'
+                  }`}
               >
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 Differs from current
               </span>
               <span
-                className={`flex items-center gap-1 ${
-                  doNewPasswordsMatch ? 'text-emerald-600' : 'text-slate-400'
-                }`}
+                className={`flex items-center gap-1 ${doNewPasswordsMatch ? 'text-emerald-600' : 'text-slate-400'
+                  }`}
               >
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 Passwords match

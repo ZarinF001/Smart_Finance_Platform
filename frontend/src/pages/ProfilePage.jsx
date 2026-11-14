@@ -51,10 +51,10 @@ export const ProfilePage = () => {
 
   const formattedDate = user?.createdAt
     ? new Date(user.createdAt).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
     : 'Active Member';
 
   const getInitials = (name) => {

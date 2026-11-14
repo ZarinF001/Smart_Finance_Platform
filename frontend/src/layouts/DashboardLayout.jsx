@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import DashboardSidebar from '../components/layout/DashboardSidebar.jsx';
 import DashboardNavbar from '../components/layout/DashboardNavbar.jsx';
@@ -8,7 +8,7 @@ export const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAFAFA]">
+    <div className="min-h-screen flex flex-col bg-[#F4EFF3]">
       {/* Sidebar for Desktop (fixed w-60) & Mobile (sliding drawer) */}
       <DashboardSidebar
         isOpen={sidebarOpen}

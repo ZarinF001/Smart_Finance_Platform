@@ -1,10 +1,10 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-[#FAFAFA] text-slate-900 antialiased selection:bg-brand-600 selection:text-white;
+    @apply bg-[#F4EFF3] text-slate-900 antialiased selection:bg-brand-600 selection:text-white;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     letter-spacing: -0.011em;
   }
@@ -46,7 +46,7 @@
   }
 }
 
-/* Subtle, unobtrusive scrollbar */
+/* Subtle, unobtrusive scrollbar in thematic palette shades */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -57,10 +57,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #B7AFC9;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #8A82A6;
 }

@@ -126,9 +126,8 @@ export const DashboardPage = () => {
 
             <div className="flex items-baseline gap-2">
               <span
-                className={`text-3xl sm:text-4xl font-extrabold tracking-tight tabular-nums ${
-                  summary.netBalance >= 0 ? 'text-slate-900' : 'text-rose-600'
-                }`}
+                className={`text-3xl sm:text-4xl font-extrabold tracking-tight tabular-nums ${summary.netBalance >= 0 ? 'text-slate-900' : 'text-rose-600'
+                  }`}
               >
                 {formatBDT(summary.netBalance, { showSign: true })}
               </span>
@@ -205,13 +204,12 @@ export const DashboardPage = () => {
             </div>
             <div className="w-full bg-slate-200/70 rounded-full h-1.5 mt-2 overflow-hidden">
               <div
-                className={`h-full rounded-full transition-all duration-300 ${
-                  budgetSummary.overallUtilization > 100
-                    ? 'bg-rose-500'
-                    : budgetSummary.overallUtilization >= 80
+                className={`h-full rounded-full transition-all duration-300 ${budgetSummary.overallUtilization > 100
+                  ? 'bg-rose-500'
+                  : budgetSummary.overallUtilization >= 80
                     ? 'bg-amber-500'
                     : 'bg-emerald-500'
-                }`}
+                  }`}
                 style={{
                   width: `${Math.min(budgetSummary.overallUtilization, 100)}%`,
                 }}
@@ -245,11 +243,10 @@ export const DashboardPage = () => {
                     <button
                       key={f}
                       onClick={() => setTransactionFilter(f)}
-                      className={`px-2 py-0.5 rounded font-medium transition-colors ${
-                        transactionFilter === f
-                          ? 'bg-white text-slate-900 shadow-subtle font-semibold'
-                          : 'text-slate-500 hover:text-slate-900'
-                      }`}
+                      className={`px-2 py-0.5 rounded font-medium transition-colors ${transactionFilter === f
+                        ? 'bg-white text-slate-900 shadow-subtle font-semibold'
+                        : 'text-slate-500 hover:text-slate-900'
+                        }`}
                     >
                       {f === 'ALL' ? 'All' : f === 'INCOME' ? 'Income' : 'Expenses'}
                     </button>
@@ -310,11 +307,10 @@ export const DashboardPage = () => {
                       <div className="flex items-center gap-3 min-w-0">
                         {/* Transaction Icon */}
                         <div
-                          className={`w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0 ${
-                            isIncome
-                              ? 'bg-emerald-50 text-emerald-700'
-                              : 'bg-slate-100 text-slate-700'
-                          }`}
+                          className={`w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0 ${isIncome
+                            ? 'bg-emerald-50 text-emerald-700'
+                            : 'bg-slate-100 text-slate-700'
+                            }`}
                         >
                           {isIncome ? (
                             <ArrowDownLeft className="w-3.5 h-3.5" />
@@ -345,9 +341,8 @@ export const DashboardPage = () => {
 
                       <div className="text-right flex-shrink-0 pl-3">
                         <span
-                          className={`text-xs font-bold tabular-nums ${
-                            isIncome ? 'text-emerald-700' : 'text-slate-900'
-                          }`}
+                          className={`text-xs font-bold tabular-nums ${isIncome ? 'text-emerald-700' : 'text-slate-900'
+                            }`}
                         >
                           {isIncome
                             ? `+${formatBDT(tx.amount)}`
@@ -407,13 +402,12 @@ export const DashboardPage = () => {
                             {formatBDT(spent)} of {formatBDT(limit)}
                           </span>
                           <span
-                            className={`text-[10px] font-semibold px-1.5 py-0.2 rounded font-mono ${
-                              isExceeded
-                                ? 'bg-rose-50 text-rose-700 border border-rose-200'
-                                : isWarning
+                            className={`text-[10px] font-semibold px-1.5 py-0.2 rounded font-mono ${isExceeded
+                              ? 'bg-rose-50 text-rose-700 border border-rose-200'
+                              : isWarning
                                 ? 'bg-amber-50 text-amber-700 border border-amber-200'
                                 : 'bg-slate-100 text-slate-600'
-                            }`}
+                              }`}
                           >
                             {pct}%
                           </span>
@@ -422,13 +416,12 @@ export const DashboardPage = () => {
 
                       <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
                         <div
-                          className={`h-full rounded-full transition-all duration-300 ${
-                            isExceeded
-                              ? 'bg-rose-500'
-                              : isWarning
+                          className={`h-full rounded-full transition-all duration-300 ${isExceeded
+                            ? 'bg-rose-500'
+                            : isWarning
                               ? 'bg-amber-500'
                               : 'bg-brand-600'
-                          }`}
+                            }`}
                           style={{ width: `${Math.min(pct, 100)}%` }}
                         />
                       </div>
@@ -529,13 +522,12 @@ export const DashboardPage = () => {
                 </div>
                 <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
                   <div
-                    className={`h-full rounded-full transition-all duration-300 ${
-                      expenseRatio > 85
-                        ? 'bg-rose-500'
-                        : expenseRatio > 60
+                    className={`h-full rounded-full transition-all duration-300 ${expenseRatio > 85
+                      ? 'bg-rose-500'
+                      : expenseRatio > 60
                         ? 'bg-amber-500'
                         : 'bg-brand-600'
-                    }`}
+                      }`}
                     style={{ width: `${expenseRatio}%` }}
                   />
                 </div>

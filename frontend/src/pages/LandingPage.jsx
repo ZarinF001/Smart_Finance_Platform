@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -21,7 +21,7 @@ export const LandingPage = () => {
   return (
     <div className="space-y-12 py-4">
       {/* Hero Welcome Section */}
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-navy-900 to-brand-950 text-white p-8 sm:p-12 lg:p-16 border border-slate-800 shadow-xl">
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-brand-800 to-brand-950 text-white p-8 sm:p-12 lg:p-16 border border-slate-800 shadow-xl">
         <div className="relative z-10 max-w-3xl space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-400/20 text-brand-300 text-xs font-medium">
             <Wallet className="w-3.5 h-3.5" />
@@ -30,7 +30,7 @@ export const LandingPage = () => {
 
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
             Take control of your money with{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 via-indigo-200 to-emerald-300">
+            <span>
               Split Easy
             </span>
           </h1>
@@ -67,7 +67,7 @@ export const LandingPage = () => {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="text-white border-slate-700 hover:bg-white/10 font-semibold"
+                    className="bg-transparent text-white border-slate-400 hover:bg-white/10 font-semibold"
                   >
                     Sign In
                   </Button>
@@ -109,7 +109,7 @@ export const LandingPage = () => {
 
           {/* Feature 2 */}
           <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-subtle hover:border-slate-300 transition-colors space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center">
               <PieChart className="w-5 h-5" />
             </div>
             <h3 className="text-sm font-bold text-slate-900">
@@ -175,7 +175,7 @@ export const LandingPage = () => {
         </div>
 
         <div className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-subtle space-y-2">
-          <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-2">
+          <div className="w-9 h-9 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-2">
             <Lock className="w-4 h-4" />
           </div>
           <h3 className="text-sm font-bold text-slate-900">
@@ -210,3 +210,4 @@ export const LandingPage = () => {
 };
 
 export default LandingPage;
+

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
@@ -164,7 +164,7 @@ export const DashboardSidebar = ({ isOpen, onClose }) => {
                           cn(
                             'flex items-center gap-2.5 px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors',
                             isActive
-                              ? 'bg-blue-50 text-blue-700 font-semibold border-l-2 border-brand-600 pl-2'
+                              ? 'bg-brand-50 text-brand-700 font-semibold border-l-2 border-brand-600 pl-2'
                               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                           )
                         }
@@ -220,3 +220,4 @@ export const DashboardSidebar = ({ isOpen, onClose }) => {
 };
 
 export default DashboardSidebar;
+

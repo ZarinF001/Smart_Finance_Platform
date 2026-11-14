@@ -208,9 +208,8 @@ export const ExpenseFormModal = ({
               value={formData.amount}
               onChange={handleChange}
               placeholder="e.g. 1250"
-              className={`w-full pl-8 pr-3 py-2 text-xs bg-white border rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
-                errors.amount ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
-              }`}
+              className={`w-full pl-8 pr-3 py-2 text-xs bg-white border rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${errors.amount ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
+                }`}
             />
           </div>
           {errors.amount && (
