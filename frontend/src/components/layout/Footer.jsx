@@ -11,7 +11,7 @@ export const Footer = () => {
           </div>
           <span>Split Easy</span>
           <span className="text-slate-300">•</span>
-          <span className="text-slate-500 font-normal">Personal Finance</span>
+          <span className="text-slate-500 font-normal">Personal Finance App</span>
         </div>
 
         <div className="flex items-center gap-4 text-slate-500">
