@@ -85,6 +85,12 @@ export const BudgetFormModal = ({
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (
+      value < 1
+
+    ) {
+      return notify.error('Monthly limit cannot be less than 1!')
+    }
     setFormData((prev) => ({
       ...prev,
       [name]: name === 'month' || name === 'year' ? Number(value) : value,
@@ -187,9 +193,8 @@ export const BudgetFormModal = ({
               value={formData.category}
               onChange={handleChange}
               disabled={isEditing} // Category cannot be changed on edit to avoid confusion
-              className={`w-full px-2.5 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
-                isEditing ? 'bg-slate-50 cursor-not-allowed opacity-80' : ''
-              }`}
+              className={`w-full px-2.5 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${isEditing ? 'bg-slate-50 cursor-not-allowed opacity-80' : ''
+                }`}
             >
               {categories.map((cat) => (
                 <option key={cat} value={cat}>
@@ -220,13 +225,12 @@ export const BudgetFormModal = ({
               type="number"
               name="limit"
               step="100"
-              min="1"
+
               value={formData.limit}
               onChange={handleChange}
               placeholder="e.g. 15000"
-              className={`w-full pl-8 pr-3 py-2 text-xs bg-white border rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
-                errors.limit ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
-              }`}
+              className={`w-full pl-8 pr-3 py-2 text-xs bg-white border rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${errors.limit ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
+                }`}
             />
           </div>
           {errors.limit && (
@@ -250,9 +254,8 @@ export const BudgetFormModal = ({
               value={formData.month}
               onChange={handleChange}
               disabled={isEditing}
-              className={`w-full px-2.5 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
-                isEditing ? 'bg-slate-50 cursor-not-allowed opacity-80' : ''
-              }`}
+              className={`w-full px-2.5 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${isEditing ? 'bg-slate-50 cursor-not-allowed opacity-80' : ''
+                }`}
             >
               {MONTH_NAMES.map((name, idx) => (
                 <option key={name} value={idx + 1}>
@@ -276,9 +279,8 @@ export const BudgetFormModal = ({
               value={formData.year}
               onChange={handleChange}
               disabled={isEditing}
-              className={`w-full px-2.5 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
-                isEditing ? 'bg-slate-50 cursor-not-allowed opacity-80' : ''
-              }`}
+              className={`w-full px-2.5 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${isEditing ? 'bg-slate-50 cursor-not-allowed opacity-80' : ''
+                }`}
             >
               {yearOptions.map((y) => (
                 <option key={y} value={y}>

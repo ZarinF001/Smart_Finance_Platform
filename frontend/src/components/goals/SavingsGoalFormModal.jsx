@@ -53,6 +53,11 @@ export const SavingsGoalFormModal = ({
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (
+      value < 1
+    ) {
+      return notify.error('Target amount cannot be less than 1!');
+    }
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -154,9 +159,8 @@ export const SavingsGoalFormModal = ({
             onChange={handleChange}
             placeholder="e.g. Emergency Fund, Laptop Upgrade, Vacation"
             maxLength={100}
-            className={`w-full px-3 py-2 text-xs bg-white border rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
-              errors.name ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
-            }`}
+            className={`w-full px-3 py-2 text-xs bg-white border rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${errors.name ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
+              }`}
           />
           {errors.name && (
             <p className="mt-1 text-xs text-rose-500">{errors.name}</p>
@@ -182,13 +186,12 @@ export const SavingsGoalFormModal = ({
                 type="number"
                 name="targetAmount"
                 step="100"
-                min="1"
+
                 value={formData.targetAmount}
                 onChange={handleChange}
                 placeholder="e.g. 50000"
-                className={`w-full pl-8 pr-3 py-2 text-xs bg-white border rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
-                  errors.targetAmount ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
-                }`}
+                className={`w-full pl-8 pr-3 py-2 text-xs bg-white border rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${errors.targetAmount ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
+                  }`}
               />
             </div>
             {errors.targetAmount && (
@@ -210,9 +213,8 @@ export const SavingsGoalFormModal = ({
               name="deadline"
               value={formData.deadline}
               onChange={handleChange}
-              className={`w-full px-2.5 py-2 text-xs bg-white border rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${
-                errors.deadline ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
-              }`}
+              className={`w-full px-2.5 py-2 text-xs bg-white border rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-colors ${errors.deadline ? 'border-rose-300 bg-rose-50/20' : 'border-slate-200'
+                }`}
             />
             {errors.deadline && (
               <p className="mt-1 text-xs text-rose-500">{errors.deadline}</p>
