@@ -15,7 +15,7 @@ export const Footer = () => {
         </div>
 
         <div className="flex items-center gap-4 text-slate-500">
-          <span>&copy; {new Date().getFullYear()} Split Easy. All rights reserved.</span>
+          <span>&copy; {new Date().getFullYear()} SplitEasy. All rights reserved by Zarin</span>
         </div>
       </div>
     </footer>

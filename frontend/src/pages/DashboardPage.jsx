@@ -368,6 +368,7 @@ export const DashboardPage = () => {
                 Manage Budgets <ArrowRight className="w-3 h-3" />
               </Link>
             }
+
           >
             {budgets.length === 0 ? (
               <div className="py-5 text-center text-slate-400 text-xs">
@@ -496,57 +497,7 @@ export const DashboardPage = () => {
           </Card>
 
           {/* Financial Health & Ratio Summary */}
-          <Card
-            title="Financial Health"
-            subtitle="Cash flow efficiency & savings rate"
-          >
-            <div className="space-y-4">
-              <div className="p-3 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">
-                    Monthly Savings Rate
-                  </span>
-                  <span className="text-xl font-bold text-slate-900 tabular-nums">
-                    {savingsRate}%
-                  </span>
-                </div>
-                <Badge variant={savingsRate >= 20 ? 'success' : 'neutral'} size="sm">
-                  {savingsRate >= 20 ? 'Healthy Margin' : 'Balanced'}
-                </Badge>
-              </div>
 
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between text-xs text-slate-500">
-                  <span>Expense to Inflow Ratio</span>
-                  <span className="font-semibold text-slate-800 tabular-nums">{expenseRatio}%</span>
-                </div>
-                <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
-                  <div
-                    className={`h-full rounded-full transition-all duration-300 ${expenseRatio > 85
-                      ? 'bg-rose-500'
-                      : expenseRatio > 60
-                        ? 'bg-amber-500'
-                        : 'bg-brand-600'
-                      }`}
-                    style={{ width: `${expenseRatio}%` }}
-                  />
-                </div>
-              </div>
-
-              <div className="pt-2 border-t border-slate-100 grid grid-cols-2 gap-2">
-                <Link to="/transactions" className="w-full">
-                  <Button variant="outline" size="sm" className="w-full text-xs">
-                    Ledger
-                  </Button>
-                </Link>
-                <Link to="/reports" className="w-full">
-                  <Button variant="outline" size="sm" className="w-full text-xs">
-                    Analytics
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </Card>
         </div>
       </div>
 
